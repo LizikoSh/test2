@@ -62,11 +62,11 @@
         .trust-bar-section {
             margin-bottom: 64px;
             padding: 18px 20px;
-            background: #1769B3;
-            border: 1px solid #1769B3;
-            border-left: 5px solid #0F3760;
+            background: #1F5F99;
+            border: 1px solid #1F5F99;
+            border-left: 5px solid #174A84;
             border-radius: 8px;
-            box-shadow: 0 12px 28px rgba(23, 105, 179, 0.24);
+            box-shadow: 0 12px 28px rgba(31, 95, 153, 0.24);
         }
 
         .trust-bar-container {
@@ -85,9 +85,93 @@
         }
 
         .garmin-about-premium {
+            width: 70% !important;
+            max-width: 70% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .garmin-about-premium,
+        .garmin-about-premium * {
+            box-sizing: border-box;
+        }
+
+        .garmin-about-heading {
             width: 70%;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 18px;
+        }
+
+        .garmin-about-heading .gap-title {
+            margin: 0 0 12px;
+        }
+
+        .garmin-about-heading::after {
+            content: "";
+            display: block;
+            width: 110px;
+            height: 4px;
+            background: #1F5F99;
+            border-radius: 2px;
+        }
+
+        .gap-card {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 8px;
+            background:
+                radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.96), transparent 36%),
+                radial-gradient(circle at 92% 6%, rgba(255, 255, 255, 0.62), transparent 34%),
+                linear-gradient(135deg, #ffffff 0%, #f4f4f4 24%, #e5e5e5 48%, #f7f7f7 72%, #d8d8d8 100%);
+            border: 1px solid rgba(255, 255, 255, 0.88);
+            box-shadow:
+                0 24px 70px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
+        .gap-card::after {
+            content: "";
+            position: absolute;
+            right: -150px;
+            top: -150px;
+            width: 380px;
+            height: 380px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.28) 38%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .gap-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gap-card .gap-hero {
+            padding: 42px 46px 34px;
+            background: transparent !important;
+        }
+
+        .gap-card .gap-section {
+            padding: 34px 46px;
+            background: transparent !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.66);
+        }
+
+        .gap-about-banner {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 0 0 28px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .gap-categories--audience {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .content-low-banner-section {
@@ -377,68 +461,132 @@
             <img src="images/img-20.jpg" alt="Garmin banner" class="content-low-banner-img">
         </section>
 
+        <div class="garmin-about-heading">
+            <h2 class="gap-title">4Garmin - інтернет-магазин техніки <span>Garmin</span> в Україні</h2>
+        </div>
+
         <section class="garmin-about-premium">
-            <div class="gap-hero">
-                <div>
-                    <h2 class="gap-title">4Garmin - інтернет-магазин техніки <span>Garmin</span> в Україні</h2>
-                    <p class="gap-lead"><strong>4Garmin</strong> - спеціалізований інтернет-магазин Garmin, де можна купити оригінальні смарт-годинники, навігатори, велокомп’ютери, пульсометри, морські пристрої, відеореєстратори та аксесуари Garmin з офіційною гарантією.</p>
-                    <p class="gap-lead">Ми допомагаємо підібрати не просто гаджет, а пристрій під конкретний стиль життя: тренування, військові задачі, подорожі, автомобіль, яхтинг, риболовлю або щоденне використання.</p>
-                </div>
-                <aside class="gap-side">
-                    <div class="gap-badge-main">
-                        <strong>Оригінальна техніка Garmin</strong>
-                        <span>З гарантією, консультацією та доставкою по Україні.</span>
+            <div class="gap-card">
+                <div class="gap-hero">
+                    <div>
+                        <p class="gap-lead"><strong>4Garmin</strong> - спеціалізований інтернет-магазин Garmin, де можна купити оригінальні смарт-годинники, навігатори, велокомп'ютери, пульсометри, морські пристрої, відеореєстратори та аксесуари Garmin з офіційною гарантією.</p>
+                        <p class="gap-lead">Ми допомагаємо підібрати не просто гаджет, а пристрій під конкретний стиль життя: тренування, військові задачі, подорожі, автомобіль, яхтинг, риболовлю або щоденне використання. Також пропонуємо продукцію дочірніх брендів <a href="/exercise-bikes/" target="_blank" rel="noopener"><strong>Tacx</strong></a> для тренувань та <a href="/fusion-morska-akustika/" target="_blank" rel="noopener"><strong>Fusion</strong></a> для морського обладнання.</p>
                     </div>
-                    <div class="gap-stats">
-                        <div class="gap-stat"><strong>з 2019 року</strong> <span>допомагаємо клієнтам обирати Garmin</span></div>
-                        <div class="gap-stat"><strong>12–24 місяці</strong> <span>офіційної гарантії на пристрої</span></div>
-                        <div class="gap-stat"><strong>0 грн доставка</strong> <span>безкоштовно по всій Україні</span></div>
-                    </div>
-                </aside>
-            </div>
 
-            <div class="gap-section">
-                <h2 class="gap-section-title">Основні категорії техніки Garmin</h2>
-                <p class="gap-section-subtitle">Garmin створює пристрої для людей, яким важливі точність, автономність, надійність і контроль над власними даними.</p>
-                <div class="gap-categories">
-                    <div class="gap-category">
-                        <strong>Смарт-годинники Garmin</strong>
-                        <p>Для спорту, здоров’я та щоденної активності.</p>
-                    </div>
-                    <div class="gap-category">
-                        <strong>Тактичні годинники Garmin</strong>
-                        <p>Моделі з GPS, картами та міцним корпусом.</p>
-                    </div>
-                    <div class="gap-category">
-                        <strong>Пульсометри та датчики</strong>
-                        <p>Точні дані про пульс і якість тренувань.</p>
-                    </div>
-                    <div class="gap-category">
-                        <strong>Велонавігатори та радари</strong>
-                        <p>Маршрути та безпека на дорозі.</p>
-                    </div>
+                    <aside class="gap-side">
+                        <div class="gap-badge-main">
+                            <strong>Оригінальна техніка Garmin</strong>
+                            <span>З гарантією, консультацією та доставкою по Україні.</span>
+                        </div>
+
+                        <div class="gap-stats">
+                            <div class="gap-stat"><strong>з 2019 року</strong> <span>допомагаємо клієнтам обирати Garmin</span></div>
+                            <div class="gap-stat"><strong>12-24 місяці</strong> <span>офіційної гарантії на пристрої</span></div>
+                            <div class="gap-stat"><strong>0 грн доставка</strong> <span>безкоштовно по всій Україні</span></div>
+                        </div>
+                    </aside>
                 </div>
 
-                <h2 class="gap-section-title">Чому саме у нас купують Garmin?</h2>
-                <p class="gap-section-subtitle">Професійний підхід та повна підтримка на кожному етапі.</p>
-                <div class="gap-benefits">
-                    <div class="gap-benefit">
-                        <b>Офіційний дилер</b>
-                        <span>Лише оригінальні пристрої Garmin з офіційною гарантією.</span>
-                    </div>
-                    <div class="gap-benefit">
-                        <b>Експертна допомога</b>
-                        <span>Підберемо ідеальну модель під ваші індивідуальні задачі.</span>
-                    </div>
-                    <div class="gap-benefit">
-                        <b>Сервіс та підтримка</b>
-                        <span>Допомога з налаштуванням та сумісністю приладів.</span>
-                    </div>
-                </div>
+                <div class="gap-section">
+                    <img alt="Основні категорії техніки Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-01.jpg" class="gap-about-banner">
+                    <h2 class="gap-section-title" style="text-align: center;">Основні категорії техніки Garmin</h2>
+                    <p class="gap-section-subtitle">Garmin створює пристрої для людей, яким важливі точність, автономність, надійність і контроль над власними даними - у спорті, подорожах, на воді, за кермом і в повсякденному житті.</p>
 
-                <div class="gap-final">
-                    <h3>Знайдіть Garmin, який працює саме під ваш ритм</h3>
-                    <p>Обирайте надійні пристрої для спорту, подорожей і життя разом із 4Garmin.</p>
+                    <div class="gap-categories">
+                        <div class="gap-category">
+                            <strong><a href="/smartwatches/" target="_blank" rel="noopener">Смарт-годинники Garmin</a></strong>
+                            <p>Для спорту, здоров'я, щоденної активності, навігації, сну, пульсу та повідомлень зі смартфона.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/tactical-smartwatches/" target="_blank" rel="noopener">Тактичні годинники Garmin</a></strong>
+                            <p>Моделі з GPS, картами, прихованим режимом, міцним корпусом та функціями для складних умов.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/nagrudni-datchiki/" target="_blank" rel="noopener">Пульсометри та спортивні датчики</a></strong>
+                            <p>Точні дані про пульс, каденцію, швидкість, потужність і якість тренувань.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/bicycle-gps-navigators/" target="_blank" rel="noopener">Велонавігатори</a> та <a href="/cycling-radars-and-headlight/" target="_blank" rel="noopener">радари</a> Garmin</strong>
+                            <p>Маршрути, підказки, безпека на дорозі, фари та радарні системи для велосипеда.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/gps-navigators/" target="_blank" rel="noopener">GPS-навігатори</a> і комунікатори</strong>
+                            <p>Надійна навігація, маршрути та зв'язок у подорожах, походах і поза містом.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/videoreyestratori/" target="_blank" rel="noopener">Відеореєстратори Garmin</a></strong>
+                            <p>Фіксація дорожніх ситуацій для спокою, доказовості та безпеки за кермом.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/morski-pristroyi/" target="_blank" rel="noopener">Морські пристрої Garmin</a></strong>
+                            <p>Картплотери, ехолоти, радари, тролінгові мотори та акустика Fusion для човнів і яхт.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong><a href="/aksesuari/" target="_blank" rel="noopener">Аксесуари Garmin</a></strong>
+                            <p>Ремінці, кріплення, зарядні пристрої, чохли та інші доповнення до гаджетів Garmin.</p>
+                        </div>
+                    </div>
+
+                    <img alt="Для кого техніка Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-02.jpg" class="gap-about-banner">
+                    <h2 class="gap-section-title" style="text-align: center;">Для кого техніка Garmin?</h2>
+                    <p class="gap-section-subtitle">У 4Garmin можна підібрати пристрій під конкретні задачі - від щоденного контролю активності до професійних тренувань, служби, подорожей, риболовлі чи яхтингу.</p>
+
+                    <div class="gap-categories gap-categories--audience">
+                        <div class="gap-category">
+                            <strong>Для спорту і тренувань</strong>
+                            <p>Годинники, пульсометри та датчики Garmin для бігу, велоспорту, плавання, тріатлону, фітнесу й відновлення.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong>Для подорожей і туризму</strong>
+                            <p>GPS-навігатори, карти, автономні годинники та комунікатори для маршрутів, походів і активного відпочинку.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong>Для служби і складних умов</strong>
+                            <p>Тактичні моделі Garmin з міцним корпусом, навігацією, прихованим режимом і функціями для роботи в полі.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong>Для авто і дороги</strong>
+                            <p>Відеореєстратори, навігаційні рішення та аксесуари Garmin для безпеки, контролю і впевненості за кермом.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong>Для риболовлі та води</strong>
+                            <p>Ехолоти, картплотери, радари, морська електроніка та акустика Fusion для човнів, катерів і яхт.</p>
+                        </div>
+
+                        <div class="gap-category">
+                            <strong>Для щоденного використання</strong>
+                            <p>Смарт-годинники Garmin для активності, сну, пульсу, стресу, повідомлень і кращого розуміння власного ресурсу.</p>
+                        </div>
+                    </div>
+
+                    <img alt="Чому саме у нас купують Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-03.jpg" class="gap-about-banner">
+                    <h2 class="gap-section-title" style="text-align: center;">Чому саме у нас купують Garmin?</h2>
+
+                    <div class="gap-benefits">
+                        <div class="gap-benefit"><b>Офіційний дилер Garmin</b> <span>Пропонуємо лише оригінальні пристрої Garmin з гарантією від офіційного представника в Україні.</span></div>
+                        <div class="gap-benefit"><b>Професійна консультація</b> <span>Допоможемо вибрати модель під спорт, стиль життя, задачі, бюджет і потрібні функції.</span></div>
+                        <div class="gap-benefit"><b>Гарантія 12-24 місяці</b> <span>Ви можете бути впевнені в якості пристрою та сервісній підтримці після покупки.</span></div>
+                        <div class="gap-benefit"><b>Безкоштовна доставка</b> <span>Доставляємо замовлення по всій Україні без додаткової оплати за доставку.</span></div>
+                        <div class="gap-benefit"><b>Спеціалізована підтримка</b> <span>Відповідаємо на питання щодо функцій, сумісності, налаштувань і аксесуарів Garmin.</span></div>
+                        <div class="gap-benefit"><b>Фірмовий магазин у Києві</b> <span>Можна побачити пристрій наживо, потримати в руках і оцінити якість перед покупкою.</span></div>
+                    </div>
+
+                    <div class="gap-final">
+                        <h3>Знайдіть Garmin, який працює саме під ваш ритм</h3>
+                        <p>Для тренувань, дороги, води, служби, подорожей або щоденного контролю активності.</p>
+                        <p><strong>Обирайте Garmin під свої задачі - а 4Garmin допоможе порівняти моделі, перевірити сумісність аксесуарів і знайти оптимальний пристрій.</strong></p>
+                    </div>
                 </div>
             </div>
         </section>
