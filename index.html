@@ -43,7 +43,7 @@
             padding: 0 16px;
         }
 
-        /* --- 2. ШАПКА САЙТУ (Скріншот №1) --- */
+        /* --- ШАПКА САЙТУ --- */
         .top-bar {
             background-color: var(--color-blue-main);
             color: #FFFFFF;
@@ -166,7 +166,7 @@
             color: var(--color-blue-main);
         }
 
-        /* --- 1. ГОЛОВНИЙ БАНЕР 2280x432 --- */
+        /* --- ГОЛОВНИЙ БАНЕР 2280x432 --- */
         .hero-banner-section {
             margin-top: 16px;
         }
@@ -179,7 +179,7 @@
             display: block;
         }
 
-        /* --- БЛОК ПЕРЕВАГ --- */
+        /* --- СМУГА ПЕРЕВАГ --- */
         .trust-bar-section {
             margin: 20px 0;
         }
@@ -193,22 +193,25 @@
         .trust-pill {
             background: #FFFFFF;
             border-radius: 8px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             gap: 12px;
             border: 1px solid var(--color-border);
         }
 
-        .trust-icon {
-            color: var(--color-blue-main);
-            font-size: 20px;
+        .trust-custom-icon {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .trust-text strong {
             display: block;
             font-size: 12px;
             text-transform: uppercase;
+            line-height: 1.2;
         }
 
         .trust-text span {
@@ -216,7 +219,7 @@
             color: var(--color-text-gray);
         }
 
-        /* --- 4. 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ --- */
+        /* --- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ --- */
         .sub-banners-section {
             margin-bottom: 30px;
         }
@@ -234,7 +237,7 @@
             display: block;
         }
 
-        /* --- 5. ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) --- */
+        /* --- ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) --- */
         .use-cases-section {
             margin-bottom: 40px;
         }
@@ -280,7 +283,7 @@
             color: var(--color-text-gray);
         }
 
-        /* --- 6. БЛОК "ПОПУЛЯРНІ МОДЕЛІ" (Скріншот №2) --- */
+        /* --- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" --- */
         .products-slider-section {
             margin-bottom: 40px;
             position: relative;
@@ -371,6 +374,7 @@
             margin-bottom: 10px;
             height: 48px;
             overflow: hidden;
+            text-decoration: none;
         }
 
         .product-price-box {
@@ -409,12 +413,32 @@
             align-self: flex-end;
         }
 
-        /* --- 7. НЕ ЛИШЕ СМАРТ-ГОДИННИКИ --- */
+        /* --- БЛОК "НЕ ЛИШЕ СМАРТ-ГОДИННИКИ" (3 КАРТКИ 960x960) --- */
         .other-categories-section {
             margin-bottom: 40px;
         }
 
-        /* --- 8. НАШ БЛОГ (Скріншот №3) --- */
+        .grid-3x1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .category-banner-card {
+            border-radius: 8px;
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid var(--color-border);
+        }
+
+        .category-banner-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- НАШ БЛОГ --- */
         .blog-section {
             margin-bottom: 40px;
         }
@@ -447,13 +471,226 @@
             display: block;
         }
 
+        /* --- ФУТЕР ТОЧНО ЗА СКРІНШОТОМ №1 --- */
+        .site-footer {
+            background-color: #195285;
+            color: #FFFFFF;
+            padding: 40px 0 30px;
+            font-size: 13px;
+            line-height: 1.4;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 2.3fr 2fr 2.6fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #FFFFFF;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 14px;
+        }
+
+        .footer-brand-logo {
+            max-height: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 14px;
+        }
+
+        .footer-mobile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-subcols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .footer-subcols ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-subcols li {
+            margin-bottom: 8px;
+        }
+
+        .footer-subcols a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 13px;
+        }
+
+        .footer-subcols a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .footer-contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 16px;
+        }
+
+        .contact-phone-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .phone-numbers div {
+            font-weight: 700;
+            font-size: 13px;
+            color: #FFFFFF;
+        }
+
+        .callback-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: underline;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .social-heading {
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .social-icons-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-icon-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .messenger-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #FFFFFF;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .address-box {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 14px;
+            margin-bottom: 4px;
+            line-height: 1.35;
+            display: flex;
+            gap: 6px;
+        }
+
+        .map-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: underline;
+            font-size: 12px;
+            margin-left: 18px;
+        }
+
+        /* --- ПЛАВАЮЧІ ВІДЖЕТИ СПРАВА ВНИЗУ --- */
+        .floating-widgets-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .widget-call {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #4A9FF5;
+            color: #FFFFFF;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .widget-chat {
+            background-color: #4A9FF5;
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .widget-top {
+            width: 36px;
+            height: 36px;
+            background-color: #FFFFFF;
+            color: #333333;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
         /* Адаптивність */
         @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
             .products-grid-6 { grid-template-columns: repeat(3, 1fr); }
             .trust-bar-container { grid-template-columns: repeat(2, 1fr); }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .grid-3x1 { grid-template-columns: 1fr; }
             .grid-3x2 { grid-template-columns: 1fr; }
             .products-grid-6 { grid-template-columns: repeat(2, 1fr); }
             .blog-grid-plus { grid-template-columns: 1fr; }
@@ -463,7 +700,7 @@
 </head>
 <body>
 
-    <!-- 2. ШАПКА САЙТУ ЗА СКРІНШОТОМ №1 -->
+    <!-- ШАПКА САЙТУ -->
     <div class="top-bar">
         <div class="container top-bar-container">
             <div class="top-bar-left">
@@ -508,39 +745,39 @@
             <img src="https://placehold.co/2280x432/1f5f99/ffffff?text=Garmin+Fenix+8+AMOLED+-+Твій+Максимум+на+Зап%27ясті" alt="Garmin Banner" class="hero-banner-img">
         </section>
 
-        <!-- БЛОК ПЕРЕВАГ -->
+        <!-- 2. СМУГА ПЕРЕВАГ З ПІКТОГРАМАМИ -->
         <section class="trust-bar-section">
             <div class="trust-bar-container">
                 <div class="trust-pill">
-                    <span class="trust-icon">🛡️</span>
+                    <img src="images/211.png" alt="Офіційна гарантія" class="trust-custom-icon">
                     <div class="trust-text">
                         <strong>Офіційна гарантія</strong>
                         <span>12–24 місяці сервісу</span>
                     </div>
                 </div>
                 <div class="trust-pill">
-                    <span class="trust-icon">🚚</span>
+                    <img src="images/251.png" alt="Безкоштовна доставка" class="trust-custom-icon">
                     <div class="trust-text">
                         <strong>Безкоштовна доставка</strong>
                         <span>по Україні</span>
                     </div>
                 </div>
                 <div class="trust-pill">
-                    <span class="trust-icon">🏢</span>
+                    <img src="images/221.png" alt="Працюємо з 2019 року" class="trust-custom-icon">
                     <div class="trust-text">
                         <strong>Працюємо з 2019 року</strong>
                         <span>10 000+ покупців</span>
                     </div>
                 </div>
                 <div class="trust-pill">
-                    <span class="trust-icon">👤</span>
+                    <img src="images/241-Photoroom (1).png" alt="Експертний підбір" class="trust-custom-icon">
                     <div class="trust-text">
                         <strong>Експертний підбір</strong>
                         <span>під ваші потреби</span>
                     </div>
                 </div>
                 <div class="trust-pill">
-                    <span class="trust-icon">💳</span>
+                    <img src="images/261.png" alt="Зручна оплата" class="trust-custom-icon">
                     <div class="trust-text">
                         <strong>Зручна оплата</strong>
                         <span>обмін / повернення</span>
@@ -549,7 +786,7 @@
             </div>
         </section>
 
-        <!-- 4. 2 БАНЕРИ ПІД СМУГОУ ПЕРЕВАГ -->
+        <!-- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ -->
         <section class="sub-banners-section">
             <div class="sub-banners-grid">
                 <div class="sub-banner-item">
@@ -561,7 +798,7 @@
             </div>
         </section>
 
-        <!-- 5. ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) -->
+        <!-- ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) -->
         <section class="use-cases-section">
             <h2 class="section-title-center">Оберіть Garmin для своїх завдань</h2>
             <div class="grid-3x2">
@@ -610,7 +847,7 @@
             </div>
         </section>
 
-        <!-- 6. БЛОК "ПОПУЛЯРНІ МОДЕЛІ" ЗА СКРІНШОТОМ №2 -->
+        <!-- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" -->
         <section class="products-slider-section">
             <div class="tabs-header-center">
                 <button class="tab-pill active">Хіти продажів</button>
@@ -619,7 +856,6 @@
             </div>
 
             <div class="products-grid-6">
-                <!-- Картка 1 -->
                 <div class="product-card-mini">
                     <img src="images/hero-watch.png" alt="Тонометр" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02464-00</div>
@@ -632,7 +868,6 @@
                     <button class="btn-buy-mini">Купити</button>
                 </div>
 
-                <!-- Картка 2 -->
                 <div class="product-card-mini">
                     <img src="images/fenix-8.png" alt="Fenix 8" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02903-11</div>
@@ -645,7 +880,6 @@
                     <button class="btn-buy-mini">Купити</button>
                 </div>
 
-                <!-- Картка 3 -->
                 <div class="product-card-mini">
                     <img src="images/venu-3.png" alt="Venu 3s" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02785-00</div>
@@ -658,7 +892,6 @@
                     <button class="btn-buy-mini">Купити</button>
                 </div>
 
-                <!-- Картка 4 -->
                 <div class="product-card-mini">
                     <img src="images/hero-watch.png" alt="Ваги" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02294-13</div>
@@ -671,7 +904,6 @@
                     <button class="btn-buy-mini">Купити</button>
                 </div>
 
-                <!-- Картка 5 -->
                 <div class="product-card-mini">
                     <span class="badge-discount">-32%</span>
                     <img src="images/instinct-2x.png" alt="Tactix 7" class="product-mini-img">
@@ -686,7 +918,6 @@
                     <button class="btn-buy-mini">Купити</button>
                 </div>
 
-                <!-- Картка 6 -->
                 <div class="product-card-mini">
                     <span class="badge-discount">-14%</span>
                     <img src="images/epix-pro.png" alt="Tread XL" class="product-mini-img">
@@ -703,13 +934,23 @@
             </div>
         </section>
 
-        <!-- 7. НЕ ЛИШЕ СМАРТ-ГОДИННИКИ -->
+        <!-- БЛОК "НЕ ЛИШЕ СМАРТ-ГОДИННИКИ" (3 КАРТКИ 960x960) -->
         <section class="other-categories-section">
             <h2 class="section-title-center">Не лише смарт-годинники</h2>
-            <!-- Розділ аксесуарів, велокомп'ютерів та датчиків -->
+            <div class="grid-3x1">
+                <div class="category-banner-card">
+                    <img src="https://placehold.co/960x960/1f5f99/ffffff?text=Велокомп%27ютери+та+Радари" alt="Велокомп'ютери">
+                </div>
+                <div class="category-banner-card">
+                    <img src="https://placehold.co/960x960/2b71b9/ffffff?text=GPS-Навігатори+та+Ехолоти" alt="GPS-Навігатори">
+                </div>
+                <div class="category-banner-card">
+                    <img src="https://placehold.co/960x960/174a84/ffffff?text=Ремінці+та+Аксесуари" alt="Аксесуари">
+                </div>
+            </div>
         </section>
 
-        <!-- 8. НАШ БЛОГ ЗА СКРІНШОТОМ №3 -->
+        <!-- НАШ БЛОГ -->
         <section class="blog-section">
             <h2 class="section-title-center">Наш блог</h2>
             <div class="blog-grid-plus">
@@ -723,8 +964,9 @@
             </div>
         </section>
 
-        <!-- 10. ТОЧНА ВСТАВКА ВАШОГО SEO-БЛОКУ "ОФІЦІЙНИЙ ДИЛЕР GARMIN В УКРАЇНІ" -->
-        <style type="text/css">.frontInfo,
+        <!-- SEO-БЛОК (ЗМЕНШЕНО НА 20% І ЗБЕРЕЖЕНО ЦЕНТРУВАННЯ) -->
+        <style type="text/css">
+.frontInfo,
 .frontInfo-section,
 .frontInfo-container,
 .frontInfo-about,
@@ -795,6 +1037,7 @@
   box-sizing: border-box;
 }
 
+/* МОДИФІКОВАНО: ЗМЕНШЕНО НА 20% ТА ВСТАНОВЛЕНО ЦЕНТРУВАННЯ */
 .garmin-about-premium {
   --gap-blue: #1F5F99;
   --gap-blue-light: #2B71B9;
@@ -804,9 +1047,9 @@
   --gap-line: rgba(31, 95, 153, 0.14);
   --gap-white: #ffffff;
 
-  width: 100%;
-  max-width: none;
-  margin: 34px auto 0px;
+  width: 80% !important;
+  max-width: 1056px !important;
+  margin: 34px auto 0px !important;
   padding: 0;
 
   font-family: Arial, Helvetica, sans-serif;
@@ -817,7 +1060,6 @@
   box-shadow: none !important;
 }
 
-/* Велика преміальна картка */
 .gap-card {
   position: relative;
   overflow: hidden;
@@ -845,7 +1087,6 @@
   background-color: transparent !important;
 }
 
-/* Декоративне світле сяйво без синього */
 .gap-card::after {
   content: "";
   position: absolute;
@@ -865,7 +1106,6 @@
   pointer-events: none;
 }
 
-/* Верхня частина */
 .gap-hero {
   position: relative;
   z-index: 1;
@@ -881,7 +1121,6 @@
   background-color: transparent !important;
 }
 
-/* Маленька мітка */
 .gap-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -917,7 +1156,6 @@
   box-shadow: 0 0 0 6px rgba(31, 95, 153, 0.12) !important;
 }
 
-/* Заголовок */
 .gap-title {
   margin: 0 0 22px;
 
@@ -932,7 +1170,6 @@
   color: var(--gap-blue-light) !important;
 }
 
-/* Основний текст */
 .gap-lead {
   margin: 0 0 18px;
   max-width: 720px;
@@ -946,7 +1183,6 @@
   color: var(--gap-blue);
 }
 
-/* Права інформаційна картка */
 .gap-side {
   border-radius: 8px;
   padding: 22px;
@@ -961,7 +1197,6 @@
   backdrop-filter: blur(12px);
 }
 
-/* Верхня синя плашка справа */
 .gap-badge-main {
   margin-bottom: 16px;
   padding: 18px;
@@ -999,7 +1234,6 @@
   line-height: 1.55;
 }
 
-/* Міні-картки справа */
 .gap-stats {
   display: grid;
   grid-template-columns: 1fr;
@@ -1036,7 +1270,6 @@
   line-height: 1.45;
 }
 
-/* Нижня частина */
 .gap-section {
   position: relative;
   z-index: 1;
@@ -1068,7 +1301,6 @@
   line-height: 1.65;
 }
 
-/* Категорії */
 .gap-categories {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1142,7 +1374,6 @@
   border-bottom-color: var(--gap-blue-dark);
 }
 
-/* Переваги */
 .gap-benefits {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1183,7 +1414,6 @@
   line-height: 1.55;
 }
 
-/* Фінальний блок */
 .gap-final {
   margin-top: 30px;
   padding: 24px;
@@ -1229,8 +1459,11 @@
   color: #ffffff;
 }
 
-/* Адаптація */
 @media (max-width: 980px) {
+  .garmin-about-premium {
+    width: 100% !important;
+  }
+
   .gap-hero {
     grid-template-columns: 1fr;
     padding: 34px 26px 28px;
@@ -1304,97 +1537,13 @@
     padding: 22px 18px;
   }
 
-/* Відступ після головного заголовка у верхньому блоці */
-.gap-title {
-  margin-bottom: 22px !important;
-}
-
-/* Відступи між абзацами у верхньому тексті */
-.gap-lead {
-  margin-bottom: 22px !important;
-}
-
-/* Відступ після заголовків секцій */
-.gap-section-title {
-  margin-bottom: 22px !important;
-}
-
-/* Відступ після підзаголовка перед картками */
-.gap-section-subtitle {
-  margin-bottom: 30px !important;
-}
-
-/* Відступ після блоку карток категорій перед наступним заголовком */
-.gap-categories {
-  margin-bottom: 42px !important;
-}
-
-/* Відступ між заголовком "Чому варто..." і картками переваг */
-.gap-benefits {
-  margin-top: 22px !important;
-}
-
-/* Відступ між картками переваг і фінальним синім блоком */
-.gap-final {
-  margin-top: 42px !important;
-}
-
-@media (max-width: 560px) {
-  section.about > .about__wrap > h1.heading.heading--l {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-
-    width: fit-content !important;
-    max-width: calc(100% - 28px) !important;
-
-    margin: 24px auto 24px !important;
-    padding: 9px 14px 9px 13px !important;
-
-    border-radius: 999px !important;
-
-    background: rgba(255, 255, 255, 0.82) !important;
-    border: 1px solid rgba(255, 255, 255, 0.9) !important;
-
-    box-shadow:
-      0 8px 20px rgba(31, 95, 153, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
-
-    color: transparent !important;
-    font-size: 0 !important;
-    line-height: 1 !important;
-    text-align: center !important;
-  }
-
-  section.about > .about__wrap > h1.heading.heading--l::before {
-    content: "" !important;
-
-    width: 7px !important;
-    height: 7px !important;
-    flex: 0 0 7px !important;
-
-    border-radius: 999px !important;
-
-    background: #1F5F99 !important;
-    box-shadow: 0 0 0 6px rgba(31, 95, 153, 0.12) !important;
-  }
-
-  section.about > .about__wrap > h1.heading.heading--l::after {
-    content: "Офіційний дилер Garmin в Україні" !important;
-
-    display: block !important;
-
-    color: #000000 !important;
-
-    font-size: 12px !important;
-    line-height: 1.3 !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.04em !important;
-    text-transform: uppercase !important;
-    text-align: center !important;
-  }
-}
+  .gap-title { margin-bottom: 22px !important; }
+  .gap-lead { margin-bottom: 22px !important; }
+  .gap-section-title { margin-bottom: 22px !important; }
+  .gap-section-subtitle { margin-bottom: 30px !important; }
+  .gap-categories { margin-bottom: 42px !important; }
+  .gap-benefits { margin-top: 22px !important; }
+  .gap-final { margin-top: 42px !important; }
 }
         </style>
         
@@ -1540,6 +1689,115 @@
         </div>
         </section>
 
+    </div>
+
+    <!-- 1. НОВИЙ ФУТЕР ТОЧНО ЗА СКРІНШОТОМ №1 -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            
+            <!-- Колонка 1: Бренд -->
+            <div class="footer-col-brand">
+                <img src="images/logo.png" alt="4Garmin" class="footer-brand-logo">
+                <div class="footer-copyright">© 2026 4Garmin.com</div>
+                <a href="#" class="footer-mobile-link">📱 Мобільна версія</a>
+            </div>
+
+            <!-- Колонка 2: Каталог -->
+            <div class="footer-col-nav">
+                <h4 class="footer-title">Каталог</h4>
+                <div class="footer-subcols">
+                    <ul>
+                        <li><a href="#">Смарт годинники</a></li>
+                        <li><a href="#">Смарт годинники преміумкласу MARQ</a></li>
+                        <li><a href="#">Смарт годинники за призначенням</a></li>
+                        <li><a href="#">Ремінці для годинників</a></li>
+                        <li><a href="#">Велоспорт</a></li>
+                        <li><a href="#">Навігаційні системи</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Тактичні пристрої</a></li>
+                        <li><a href="#">Нагрудні датчики</a></li>
+                        <li><a href="#">Ваги і тонометри</a></li>
+                        <li><a href="#">Морські пристрої</a></li>
+                        <li><a href="#">Транспорт</a></li>
+                        <li><a href="#">Аксесуари</a></li>
+                        <li><a href="#">Інші категорії</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Колонка 3: Клієнтам -->
+            <div class="footer-col-nav">
+                <h4 class="footer-title">Клієнтам</h4>
+                <div class="footer-subcols">
+                    <ul>
+                        <li><a href="#">Вхід до кабінету</a></li>
+                        <li><a href="#">Оплата та доставка</a></li>
+                        <li><a href="#">Обмін та повернення</a></li>
+                        <li><a href="#">Гарантія</a></li>
+                        <li><a href="#">Контакти</a></li>
+                        <li><a href="#">Наш блог</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Відгуки</a></li>
+                        <li><a href="#">Наша команда</a></li>
+                        <li><a href="#">Публічний договір (оферта)</a></li>
+                        <li><a href="#">Політика конфіденційності</a></li>
+                        <li><a href="#">Trade-in</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Колонка 4: Контактна інформація -->
+            <div class="footer-col-contacts">
+                <h4 class="footer-title">Контактна інформація</h4>
+                <div class="footer-contacts-grid">
+                    <div class="contacts-left">
+                        <div class="contact-phone-box">
+                            <span style="font-size: 16px;">📞</span>
+                            <div class="phone-numbers">
+                                <div>(097)170-90-90</div>
+                                <div>(099)170-90-90</div>
+                            </div>
+                        </div>
+                        <a href="#" class="callback-link">Передзвонити вам?</a>
+                        
+                        <div class="social-heading">Ми в соцмережах</div>
+                        <div class="social-icons-row">
+                            <a href="#" class="social-icon-btn" aria-label="Instagram">📷</a>
+                            <a href="#" class="social-icon-btn" aria-label="Facebook">📘</a>
+                            <a href="#" class="social-icon-btn" aria-label="Telegram">✈️</a>
+                            <a href="#" class="social-icon-btn" aria-label="YouTube">▶️</a>
+                        </div>
+                    </div>
+
+                    <div class="contacts-right">
+                        <a href="#" class="messenger-link">
+                            <span style="color: #25D366; font-size: 16px;">💬</span> 4GARMIN.COM у WhatsApp
+                        </a>
+                        <a href="#" class="messenger-link">
+                            <span style="color: #0088CC; font-size: 16px;">✈️</span> 4GARMIN.COM у Telegram
+                        </a>
+                        
+                        <div class="address-box">
+                            <span>📍</span>
+                            <div>вул. Семена Скляренка, 9, поверх 5, офіс 505, Київ, 04073, Україна.</div>
+                        </div>
+                        <a href="#" class="map-link">Мапа проїзду</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ПЛАВАЮЧІ ВІДЖЕТИ СПРАВА ВНИЗУ -->
+    <div class="floating-widgets-bar">
+        <button class="widget-call" aria-label="Замовити дзвінок">📞</button>
+        <button class="widget-chat">
+            Ми на зв'язку та готові допомогти! <span style="font-size: 16px;">✈️</span>
+        </button>
+        <button class="widget-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Нагору">▲</button>
     </div>
 
 </body>
