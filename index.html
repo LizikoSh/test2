@@ -226,7 +226,7 @@
             color: var(--color-text-gray);
         }
 
-        /* --- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ: ТАКТИКА + ВЕЛО --- */
+        /* --- ДВА БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ --- */
         .sub-banners-section {
             margin-bottom: 30px;
         }
@@ -348,7 +348,7 @@
             color: var(--color-text-gray);
         }
 
-        /* --- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" --- */
+        /* --- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" (5 КАРТОК) --- */
         .products-slider-section {
             margin-bottom: 40px;
             position: relative;
@@ -378,9 +378,9 @@
             color: #000000;
         }
 
-        .products-grid-6 {
+        .products-grid-5 {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 12px;
         }
 
@@ -480,7 +480,7 @@
             font-family: inherit;
         }
 
-        /* --- БЛОК "НЕ ЛИШЕ СМАРТ-ГОДИННИКИ" --- */
+        /* --- БЛОК "НЕ ЛИШЕ СМАРТ-ГОДИННИКИ" (3 КАРТКИ) --- */
         .other-categories-section {
             margin-bottom: 40px;
         }
@@ -755,7 +755,7 @@
         /* Адаптивність */
         @media (max-width: 1024px) {
             .footer-grid { grid-template-columns: 1fr 1fr; }
-            .products-grid-6 { grid-template-columns: repeat(3, 1fr); }
+            .products-grid-5 { grid-template-columns: repeat(3, 1fr); }
             .trust-bar-container { grid-template-columns: repeat(2, 1fr); }
             .sub-banners-grid { grid-template-columns: 1fr; }
         }
@@ -764,7 +764,7 @@
             .footer-grid { grid-template-columns: 1fr; }
             .grid-3x1 { grid-template-columns: 1fr; }
             .grid-3x2 { grid-template-columns: 1fr; }
-            .products-grid-6 { grid-template-columns: repeat(2, 1fr); }
+            .products-grid-5 { grid-template-columns: repeat(2, 1fr); }
             .blog-grid-plus { grid-template-columns: 1fr; }
             .top-bar-left { display: none; }
         }
@@ -812,7 +812,7 @@
     <div class="container">
         
         <section class="hero-banner-section">
-            <img src="images/hero-banner-01.jpg" alt="Garmin Instinct 3" class="hero-banner-img">
+            <img src="images/hero-banner-01.jpg" alt="Garmin Hero Banner" class="hero-banner-img">
         </section>
 
         <section class="trust-bar-section">
@@ -859,7 +859,7 @@
             <div class="sub-banners-grid">
                 
                 <a href="#tactical" class="promo-banner-card">
-                    <img src="images/sub-banner-01.jpg" alt="Тактичні годинники Garmin">
+                    <img src="images/1-tactical-smartwatches-10-02.jpg" alt="Тактичні годинники Garmin">
                     <div class="promo-banner-info">
                         <span class="promo-banner-tag">Спеціальні серії</span>
                         <h3 class="promo-banner-title">Тактичні годинники Tactix & Instinct</h3>
@@ -869,7 +869,7 @@
                 </a>
 
                 <a href="#cycling" class="promo-banner-card">
-                    <img src="images/sub-banner-02.jpg" alt="Велокомп'ютери Edge та радари Varia">
+                    <img src="images/2-edge-mtb-pc-01.jpg" alt="Велокомп'ютери Edge та радари Varia">
                     <div class="promo-banner-info">
                         <span class="promo-banner-tag">Велосипедна екосистема</span>
                         <h3 class="promo-banner-title">Велонавігатори Edge & Радари Varia</h3>
@@ -885,42 +885,42 @@
             <h2 class="section-title-center">Оберіть Garmin для своїх завдань</h2>
             <div class="grid-3x2">
                 <div class="use-case-card">
-                    <img src="images/cat-running.jpg" alt="Біг та триатлон">
+                    <img src="images/3-Garmin-Edge-1050-02.jpg" alt="Завдання 1">
                     <div class="use-case-content">
                         <h3>Біг та Триатлон</h3>
                         <p>Точна навігація, метрики тренувань та аналіз відновлення.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="images/cat-outdoor.jpg" alt="Аутдор та екстрим">
+                    <img src="images/4-g-Garmin-Edge-1050-02.jpg" alt="Завдання 2">
                     <div class="use-case-content">
                         <h3>Аутдор та Екстрим</h3>
                         <p>Ударостійкі корпуси MIL-STD-810, сонячна батарея.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="images/cat-lifestyle.jpg" alt="Преміум та стиль">
+                    <img src="images/5-g-Garmin-Venu-4-06.jpg" alt="Завдання 3">
                     <div class="use-case-content">
                         <h3>Преміум та Стиль</h3>
                         <p>Титан, сапфірове скло, яскраві AMOLED-дисплеї.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="images/cat-fitness.jpg" alt="Фітнес та здоров'я">
+                    <img src="images/6-forerunner-970-2026-02.jpg" alt="Завдання 4">
                     <div class="use-case-content">
                         <h3>Фітнес та Здоров'я</h3>
                         <p>Моніторинг сну, стресу та рівня енергії Body Battery.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="images/cat-tactical.jpg" alt="Тактика">
+                    <img src="images/7-Tacx-Flux-S-01.jpg" alt="Завдання 5">
                     <div class="use-case-content">
                         <h3>Служба та Тактика</h3>
                         <p>Прихований режим, балістичні калькулятори, сумісність з ПНБ.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="images/cat-marine.jpg" alt="Морські">
+                    <img src="images/8-Varia-2026-03-2-ru.jpg" alt="Завдання 6">
                     <div class="use-case-content">
                         <h3>Риболовля та Навігація</h3>
                         <p>Ехолоти, картплотери та супутниковий зв'язок на воді.</p>
@@ -936,9 +936,9 @@
                 <button class="tab-pill">Новинки</button>
             </div>
 
-            <div class="products-grid-6">
+            <div class="products-grid-5">
                 <div class="product-card-mini">
-                    <img src="images/product-index-bpm.png" alt="Тонометр" class="product-mini-img">
+                    <img src="images/9-86c135c6f44a465085650780a899145c.jpg" alt="Тонометр" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02464-00</div>
                     <div class="product-rating">★★★★★ <span>💬 6</span></div>
                     <a href="#" class="product-mini-title">Розумний тонометр Garmin Index BPM</a>
@@ -950,7 +950,7 @@
                 </div>
 
                 <div class="product-card-mini">
-                    <img src="images/fenix-8.png" alt="Fenix 8" class="product-mini-img">
+                    <img src="images/10-94f0cbed1bb341749484edf4f7eb17e0.png" alt="Fenix 8" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02903-11</div>
                     <div class="product-rating">★★★★★ <span>💬 0</span></div>
                     <a href="#" class="product-mini-title">Смарт-годинник Garmin fenix 8 AMOLED (43 мм) Sapphire...</a>
@@ -962,7 +962,7 @@
                 </div>
 
                 <div class="product-card-mini">
-                    <img src="images/venu-3.png" alt="Venu 3s" class="product-mini-img">
+                    <img src="images/11-b4a6277814a34f099a2a38ecfc891e3e.png" alt="Venu 3s" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02785-00</div>
                     <div class="product-rating">★★★★★ <span>💬 14</span></div>
                     <a href="#" class="product-mini-title">Смарт-годинник Garmin Venu 3s сірий зі сланцевим безелем...</a>
@@ -974,7 +974,7 @@
                 </div>
 
                 <div class="product-card-mini">
-                    <img src="images/product-index-s2.png" alt="Ваги" class="product-mini-img">
+                    <img src="images/12-b435b62f-c459-4530-8d71-6618c4d48619.png" alt="Ваги" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02294-13</div>
                     <div class="product-rating">★★★★★ <span>💬 7</span></div>
                     <a href="#" class="product-mini-title">Смарт-ваги Garmin Index S2, білі</a>
@@ -987,27 +987,13 @@
 
                 <div class="product-card-mini">
                     <span class="badge-discount">-32%</span>
-                    <img src="images/instinct-2x.png" alt="Tactix 7" class="product-mini-img">
+                    <img src="images/13-e1e0a27c887440e8b100807c107ec06b.png" alt="Tactix 7" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02931-01</div>
                     <div class="product-rating">★★★★★ <span>💬 3</span></div>
                     <a href="#" class="product-mini-title">Смарт-годинник Garmin tactix 7 AMOLED з адаптивним дисплеєм</a>
                     <div class="product-price-box">
                         <div class="old-price">55 439 грн</div>
                         <div class="main-price">37 525 грн</div>
-                    </div>
-                    <div class="stock-status">В наявності</div>
-                    <button class="btn-buy-mini">Купити</button>
-                </div>
-
-                <div class="product-card-mini">
-                    <span class="badge-discount">-14%</span>
-                    <img src="images/epix-pro.png" alt="Tread XL" class="product-mini-img">
-                    <div class="product-art">Артикул: 010-02509-10</div>
-                    <div class="product-rating">★★★★★ <span>💬 0</span></div>
-                    <a href="#" class="product-mini-title">Супутниковий навігатор Garmin Tread XL Overland 10-дюймовий</a>
-                    <div class="product-price-box">
-                        <div class="old-price">71 279 грн</div>
-                        <div class="main-price">61 279 грн</div>
                     </div>
                     <div class="stock-status">В наявності</div>
                     <button class="btn-buy-mini">Купити</button>
@@ -1019,13 +1005,13 @@
             <h2 class="section-title-center">Не лише смарт-годинники</h2>
             <div class="grid-3x1">
                 <div class="category-banner-card">
-                    <img src="images/other-cat-01.jpg" alt="Велокомп'ютери та Радари">
+                    <img src="images/16.jpg" alt="Категорія 1">
                 </div>
                 <div class="category-banner-card">
-                    <img src="images/other-cat-02.jpg" alt="GPS-Навігатори та Ехолоти">
+                    <img src="images/17-010-02812-00_LS03-D.jpg" alt="Категорія 2">
                 </div>
                 <div class="category-banner-card">
-                    <img src="images/other-cat-03.jpg" alt="Ремінці та Аксесуари">
+                    <img src="images/18-37968-D-1-c4d8b3be-6a3d-4cca-bfa1-5b4931202cdf.jpg" alt="Категорія 3">
                 </div>
             </div>
         </section>
@@ -1034,11 +1020,11 @@
             <h2 class="section-title-center">Наш блог</h2>
             <div class="blog-grid-plus">
                 <div class="blog-left-large">
-                    <img src="images/blog-main.jpg" alt="Блог Головне">
+                    <img src="images/19-37968-D-2-d196ca70-1a43-43da-9410-f94fc1b528b6.jpg" alt="Блог Головне">
                 </div>
                 <div class="blog-right-stack">
-                    <img src="images/blog-sub-01.jpg" alt="Блог Стаття 1">
-                    <img src="images/blog-sub-02.jpg" alt="Блог Стаття 2">
+                    <img src="images/2-edge-mtb-pc-01.jpg" alt="Блог Стаття 1">
+                    <img src="images/3-Garmin-Edge-1050-02.jpg" alt="Блог Стаття 2">
                 </div>
             </div>
         </section>
@@ -1650,7 +1636,7 @@
         </aside>
         </div>
 
-        <div class="gap-section"><img alt="Основні категорії техніки Garmin" decoding="async" loading="lazy" src="images/main-about-banner-01.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <div class="gap-section"><img alt="Основні категорії техніки Garmin" decoding="async" loading="lazy" src="images/16.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Основні категорії техніки Garmin</h2>
 
         <p>&nbsp;</p>
@@ -1698,7 +1684,7 @@
         <p>Ремінці, кріплення, зарядні пристрої, чохли та інші доповнення до гаджетів Garmin.</p>
         </div>
         </div>
-        <img alt="Для кого техніка Garmin" decoding="async" loading="lazy" src="images/main-about-banner-02.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <img alt="Для кого техніка Garmin" decoding="async" loading="lazy" src="images/17-010-02812-00_LS03-D.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Для кого техніка Garmin?</h2>
 
         <p>&nbsp;</p>
@@ -1736,7 +1722,7 @@
         <p>Смарт-годинники Garmin для активності, сну, пульсу, стресу, повідомлень і кращого розуміння власного ресурсу.</p>
         </div>
         </div>
-        <img alt="Чому саме у нас купують Garmin" decoding="async" loading="lazy" src="images/main-about-banner-03.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <img alt="Чому саме у нас купують Garmin" decoding="async" loading="lazy" src="images/18-37968-D-1-c4d8b3be-6a3d-4cca-bfa1-5b4931202cdf.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Чому саме у нас купують Garmin?</h2>
 
         <p>&nbsp;</p>
