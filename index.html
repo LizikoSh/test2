@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4garmin.com — Офіційний дилер Garmin в Україні</title>
     
-    <!-- Підключення шрифту Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- Основні стилі сторінки -->
     <style>
         :root {
             --color-blue-main: #1F5F99;
@@ -43,7 +41,7 @@
             padding: 0 16px;
         }
 
-        /* --- ШАПКА САЙТУ --- */
+        /* --- ВЕРХНІЙ ІНФО-РЯДОК --- */
         .top-bar {
             background-color: var(--color-blue-main);
             color: #FFFFFF;
@@ -81,10 +79,15 @@
             text-decoration: none;
         }
 
+        /* --- ЛИПКА СМУГА ШАПКИ (STICKY HEADER) --- */
         .main-header {
             background-color: #FFFFFF;
-            padding: 16px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
         }
 
         .main-header-container {
@@ -114,6 +117,7 @@
             gap: 10px;
             cursor: pointer;
             transition: background 0.2s;
+            font-family: inherit;
         }
 
         .btn-catalog:hover {
@@ -507,7 +511,7 @@
             width: auto;
             margin-bottom: 24px;
             display: block;
-            filter: brightness(0) invert(1); /* Адаптація логотипа під темно-синій фон */
+            filter: brightness(0) invert(1);
         }
 
         .footer-copyright {
@@ -708,7 +712,6 @@
 </head>
 <body>
 
-    <!-- ШАПКА САЙТУ -->
     <div class="top-bar">
         <div class="container top-bar-container">
             <div class="top-bar-left">
@@ -725,7 +728,6 @@
 
     <header class="main-header">
         <div class="container main-header-container">
-            <!-- ЛОГОТИП У ШАПЦІ -->
             <a href="/" class="header-logo">
                 <img src="images/4Garmin-logo-big – копія transparent.png" alt="4Garmin.com">
             </a>
@@ -749,12 +751,10 @@
 
     <div class="container">
         
-        <!-- 1. ГОЛОВНИЙ БАНЕР -->
         <section class="hero-banner-section">
             <img src="images/hero-banner-01.jpg" alt="Garmin Instinct 3" class="hero-banner-img">
         </section>
 
-        <!-- 2. СМУГА ПЕРЕВАГ -->
         <section class="trust-bar-section">
             <div class="trust-bar-container">
                 <div class="trust-pill">
@@ -795,7 +795,6 @@
             </div>
         </section>
 
-        <!-- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ -->
         <section class="sub-banners-section">
             <div class="sub-banners-grid">
                 <div class="sub-banner-item">
@@ -807,7 +806,6 @@
             </div>
         </section>
 
-        <!-- ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) -->
         <section class="use-cases-section">
             <h2 class="section-title-center">Оберіть Garmin для своїх завдань</h2>
             <div class="grid-3x2">
@@ -856,7 +854,6 @@
             </div>
         </section>
 
-        <!-- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" -->
         <section class="products-slider-section">
             <div class="tabs-header-center">
                 <button class="tab-pill active">Хіти продажів</button>
@@ -943,7 +940,6 @@
             </div>
         </section>
 
-        <!-- БЛОК "НЕ ЛИШЕ СМАРТ-ГОДИННИКИ" -->
         <section class="other-categories-section">
             <h2 class="section-title-center">Не лише смарт-годинники</h2>
             <div class="grid-3x1">
@@ -959,7 +955,6 @@
             </div>
         </section>
 
-        <!-- НАШ БЛОГ -->
         <section class="blog-section">
             <h2 class="section-title-center">Наш блог</h2>
             <div class="blog-grid-plus">
@@ -973,7 +968,6 @@
             </div>
         </section>
 
-        <!-- SEO-БЛОК -->
         <style type="text/css">
 .frontInfo,
 .frontInfo-section,
@@ -1699,18 +1693,15 @@
 
     </div>
 
-    <!-- ФУТЕР -->
     <footer class="site-footer">
         <div class="container footer-grid">
             
-            <!-- ЛОГОТИП У ФУТЕРІ -->
             <div class="footer-col-brand">
                 <img src="images/4Garmin-logo-big – копія transparent.png" alt="4Garmin" class="footer-brand-logo">
                 <div class="footer-copyright">© 2026 4Garmin.com</div>
                 <a href="#" class="footer-mobile-link">📱 Мобільна версія</a>
             </div>
 
-            <!-- Колонка 2: Каталог -->
             <div class="footer-col-nav">
                 <h4 class="footer-title">Каталог</h4>
                 <div class="footer-subcols">
@@ -1734,7 +1725,6 @@
                 </div>
             </div>
 
-            <!-- Колонка 3: Клієнтам -->
             <div class="footer-col-nav">
                 <h4 class="footer-title">Клієнтам</h4>
                 <div class="footer-subcols">
@@ -1756,7 +1746,6 @@
                 </div>
             </div>
 
-            <!-- Колонка 4: Контактна інформація -->
             <div class="footer-col-contacts">
                 <h4 class="footer-title">Контактна інформація</h4>
                 <div class="footer-contacts-grid">
@@ -1799,7 +1788,6 @@
         </div>
     </footer>
 
-    <!-- ПЛАВАЮЧІ ВІДЖЕТИ -->
     <div class="floating-widgets-bar">
         <button class="widget-call" aria-label="Замовити дзвінок">📞</button>
         <button class="widget-chat">
