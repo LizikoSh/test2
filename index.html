@@ -226,7 +226,7 @@
             color: var(--color-text-gray);
         }
 
-        /* --- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ --- */
+        /* --- 2 БАНЕРИ ПІД СМУГОЮ ПЕРЕВАГ: ТАКТИКА + ВЕЛО --- */
         .sub-banners-section {
             margin-bottom: 30px;
         }
@@ -237,11 +237,68 @@
             gap: 16px;
         }
 
-        .sub-banner-item img {
-            width: 100%;
-            height: auto;
+        .promo-banner-card {
+            position: relative;
             border-radius: 7px;
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid var(--color-border);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .promo-banner-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
             display: block;
+            border-radius: 7px 7px 0 0;
+            transition: transform 0.3s ease;
+        }
+
+        .promo-banner-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .promo-banner-info {
+            padding: 18px 20px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+        }
+
+        .promo-banner-tag {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--color-blue-main);
+            letter-spacing: 0.5px;
+        }
+
+        .promo-banner-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--color-text-dark);
+            line-height: 1.25;
+        }
+
+        .promo-banner-desc {
+            font-size: 13px;
+            color: var(--color-text-gray);
+            line-height: 1.4;
+        }
+
+        .promo-banner-btn {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-blue-main);
         }
 
         /* --- ОБЕРІТЬ GARMIN ДЛЯ СВОЇХ ЗАВДАНЬ (3x2) --- */
@@ -273,6 +330,7 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
+            border-radius: 7px 7px 0 0;
         }
 
         .use-case-content {
@@ -445,6 +503,7 @@
             aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
+            border-radius: 7px;
         }
 
         /* --- НАШ БЛОГ --- */
@@ -698,6 +757,7 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .products-grid-6 { grid-template-columns: repeat(3, 1fr); }
             .trust-bar-container { grid-template-columns: repeat(2, 1fr); }
+            .sub-banners-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -797,12 +857,27 @@
 
         <section class="sub-banners-section">
             <div class="sub-banners-grid">
-                <div class="sub-banner-item">
-                    <img src="https://placehold.co/960x432/2b71b9/ffffff?text=Тактичні+годинники+Garmin" alt="Тактичні годинники">
-                </div>
-                <div class="sub-banner-item">
-                    <img src="https://placehold.co/960x432/174a84/ffffff?text=Велонавігатори+та+Радари" alt="Велонавігатори">
-                </div>
+                
+                <a href="#tactical" class="promo-banner-card">
+                    <img src="images/sub-banner-01.jpg" alt="Тактичні годинники Garmin">
+                    <div class="promo-banner-info">
+                        <span class="promo-banner-tag">Спеціальні серії</span>
+                        <h3 class="promo-banner-title">Тактичні годинники Tactix & Instinct</h3>
+                        <p class="promo-banner-desc">MIL-STD-810 захист, режим прихованості Stealth, балістичні калькулятори та зелений ліхтарик.</p>
+                        <span class="promo-banner-btn">Обрати тактичний годинник →</span>
+                    </div>
+                </a>
+
+                <a href="#cycling" class="promo-banner-card">
+                    <img src="images/sub-banner-02.jpg" alt="Велокомп'ютери Edge та радари Varia">
+                    <div class="promo-banner-info">
+                        <span class="promo-banner-tag">Велосипедна екосистема</span>
+                        <h3 class="promo-banner-title">Велонавігатори Edge & Радари Varia</h3>
+                        <p class="promo-banner-desc">Максимальна безпека на дорозі: радар-ліхтар з виявленням авто до 140м та карти ClimbPro на кермі.</p>
+                        <span class="promo-banner-btn">Переглянути велообладнання →</span>
+                    </div>
+                </a>
+
             </div>
         </section>
 
@@ -838,14 +913,14 @@
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="https://placehold.co/600x400/e2e8f0/333333?text=Тактичні+завдання" alt="Тактика">
+                    <img src="images/cat-tactical.jpg" alt="Тактика">
                     <div class="use-case-content">
                         <h3>Служба та Тактика</h3>
                         <p>Прихований режим, балістичні калькулятори, сумісність з ПНБ.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="https://placehold.co/600x400/e2e8f0/333333?text=Вода+та+Риболовля" alt="Морські">
+                    <img src="images/cat-marine.jpg" alt="Морські">
                     <div class="use-case-content">
                         <h3>Риболовля та Навігація</h3>
                         <p>Ехолоти, картплотери та супутниковий зв'язок на воді.</p>
@@ -863,7 +938,7 @@
 
             <div class="products-grid-6">
                 <div class="product-card-mini">
-                    <img src="images/hero-watch.png" alt="Тонометр" class="product-mini-img">
+                    <img src="images/product-index-bpm.png" alt="Тонометр" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02464-00</div>
                     <div class="product-rating">★★★★★ <span>💬 6</span></div>
                     <a href="#" class="product-mini-title">Розумний тонометр Garmin Index BPM</a>
@@ -899,7 +974,7 @@
                 </div>
 
                 <div class="product-card-mini">
-                    <img src="images/hero-watch.png" alt="Ваги" class="product-mini-img">
+                    <img src="images/product-index-s2.png" alt="Ваги" class="product-mini-img">
                     <div class="product-art">Артикул: 010-02294-13</div>
                     <div class="product-rating">★★★★★ <span>💬 7</span></div>
                     <a href="#" class="product-mini-title">Смарт-ваги Garmin Index S2, білі</a>
@@ -944,13 +1019,13 @@
             <h2 class="section-title-center">Не лише смарт-годинники</h2>
             <div class="grid-3x1">
                 <div class="category-banner-card">
-                    <img src="https://placehold.co/960x960/1f5f99/ffffff?text=Велокомп%27ютери+та+Радари" alt="Велокомп'ютери">
+                    <img src="images/other-cat-01.jpg" alt="Велокомп'ютери та Радари">
                 </div>
                 <div class="category-banner-card">
-                    <img src="https://placehold.co/960x960/2b71b9/ffffff?text=GPS-Навігатори+та+Ехолоти" alt="GPS-Навігатори">
+                    <img src="images/other-cat-02.jpg" alt="GPS-Навігатори та Ехолоти">
                 </div>
                 <div class="category-banner-card">
-                    <img src="https://placehold.co/960x960/174a84/ffffff?text=Ремінці+та+Аксесуари" alt="Аксесуари">
+                    <img src="images/other-cat-03.jpg" alt="Ремінці та Аксесуари">
                 </div>
             </div>
         </section>
@@ -959,11 +1034,11 @@
             <h2 class="section-title-center">Наш блог</h2>
             <div class="blog-grid-plus">
                 <div class="blog-left-large">
-                    <img src="https://placehold.co/1920x864/1f5f99/ffffff?text=Великий+Огляд:+Garmin+Fenix+8+VS+Epix+Pro" alt="Блог Головне">
+                    <img src="images/blog-main.jpg" alt="Блог Головне">
                 </div>
                 <div class="blog-right-stack">
-                    <img src="https://placehold.co/960x432/2b71b9/ffffff?text=Як+обрати+пульсометр" alt="Блог Стаття 1">
-                    <img src="https://placehold.co/960x432/174a84/ffffff?text=Топ-5+аксесуарів+для+велосипеда" alt="Блог Стаття 2">
+                    <img src="images/blog-sub-01.jpg" alt="Блог Стаття 1">
+                    <img src="images/blog-sub-02.jpg" alt="Блог Стаття 2">
                 </div>
             </div>
         </section>
@@ -1575,7 +1650,7 @@
         </aside>
         </div>
 
-        <div class="gap-section"><img alt="Основні категорії техніки Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-01.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <div class="gap-section"><img alt="Основні категорії техніки Garmin" decoding="async" loading="lazy" src="images/main-about-banner-01.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Основні категорії техніки Garmin</h2>
 
         <p>&nbsp;</p>
@@ -1623,7 +1698,7 @@
         <p>Ремінці, кріплення, зарядні пристрої, чохли та інші доповнення до гаджетів Garmin.</p>
         </div>
         </div>
-        <img alt="Для кого техніка Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-02.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <img alt="Для кого техніка Garmin" decoding="async" loading="lazy" src="images/main-about-banner-02.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Для кого техніка Garmin?</h2>
 
         <p>&nbsp;</p>
@@ -1661,7 +1736,7 @@
         <p>Смарт-годинники Garmin для активності, сну, пульсу, стресу, повідомлень і кращого розуміння власного ресурсу.</p>
         </div>
         </div>
-        <img alt="Чому саме у нас купують Garmin" decoding="async" loading="lazy" src="https://4garmin.com/content/uploads/images/design/main-about-banner-03.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
+        <img alt="Чому саме у нас купують Garmin" decoding="async" loading="lazy" src="images/main-about-banner-03.jpg" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 0 28px; border-radius: 7px; object-fit: cover;" />
         <h2 class="gap-section-title" style="text-align: center;">Чому саме у нас купують Garmin?</h2>
 
         <p>&nbsp;</p>
