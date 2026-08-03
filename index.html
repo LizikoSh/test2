@@ -792,5 +792,80 @@
         <button class="widget-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Нагору">▲</button>
     </div>
 
+<script>
+document.querySelectorAll(".hero-slider").forEach((slider) => {
+    const slides = [...slider.querySelectorAll(".hero-slide")];
+    const prevButton = slider.querySelector(".hero-slider__arrow--prev");
+    const nextButton = slider.querySelector(".hero-slider__arrow--next");
+    const dotsContainer = slider.querySelector(".hero-slider__dots");
+
+    let currentSlide = 0;
+    let autoplayTimer;
+
+    const dots = slides.map((_, index) => {
+        const dot = document.createElement("button");
+
+        dot.type = "button";
+        dot.className = "hero-slider__dot";
+        dot.setAttribute("aria-label", `Показати банер ${index + 1}`);
+
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            restartAutoplay();
+        });
+
+        dotsContainer.appendChild(dot);
+        return dot;
+    });
+
+    function showSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+            slide.classList.toggle("is-active", slideIndex === currentSlide);
+        });
+
+        dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle("is-active", dotIndex === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function startAutoplay() {
+        autoplayTimer = setInterval(nextSlide, 6000);
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayTimer);
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    prevButton.addEventListener("click", () => {
+        showSlide(currentSlide - 1);
+        restartAutoplay();
+    });
+
+    nextButton.addEventListener("click", () => {
+        nextSlide();
+        restartAutoplay();
+    });
+
+    slider.addEventListener("mouseenter", stopAutoplay);
+    slider.addEventListener("mouseleave", startAutoplay);
+    slider.addEventListener("focusin", stopAutoplay);
+    slider.addEventListener("focusout", startAutoplay);
+
+    showSlide(0);
+    startAutoplay();
+});
+</script>
+    
 </body>
 </html>
