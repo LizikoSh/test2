@@ -55,8 +55,105 @@
             margin-bottom: 56px;
         }
 
-        .hero-banner-section {
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2880 / 864;
             margin-bottom: 24px;
+            overflow: hidden;
+            background: #f5f5f5;
+            border-radius: 8px;
+            box-shadow:
+                0 10px 24px rgba(16, 42, 67, 0.12),
+                0 2px 6px rgba(16, 42, 67, 0.08);
+        }
+
+        .hero-slider__track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.55s ease, visibility 0.55s ease;
+        }
+
+        .hero-slide.is-active {
+            z-index: 1;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-slider__arrow {
+            position: absolute;
+            z-index: 3;
+            top: 50%;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            color: #ffffff;
+            font-size: 32px;
+            line-height: 1;
+            background: rgba(17, 24, 39, 0.48);
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .hero-slider__arrow:hover {
+            background: #1f5f99;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .hero-slider__arrow--prev {
+            left: 18px;
+        }
+
+        .hero-slider__arrow--next {
+            right: 18px;
+        }
+
+        .hero-slider__dots {
+            position: absolute;
+            z-index: 3;
+            right: 0;
+            bottom: 16px;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .hero-slider__dot {
+            width: 9px;
+            height: 9px;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(17, 24, 39, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hero-slider__dot.is-active {
+            width: 28px;
+            background: #1f5f99;
+            border-color: #ffffff;
+            border-radius: 8px;
         }
 
         .trust-bar-section {
@@ -234,6 +331,36 @@
             border-radius: 8px;
         }
 
+        @media (max-width: 768px) {
+            .hero-slider {
+                aspect-ratio: 16 / 9;
+            }
+
+            .hero-slider__arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 26px;
+            }
+
+            .hero-slider__arrow--prev {
+                left: 8px;
+            }
+
+            .hero-slider__arrow--next {
+                right: 8px;
+            }
+
+            .hero-slider__dots {
+                bottom: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-slide {
+                transition: none;
+            }
+        }
+
         .gap-final {
             box-shadow:
                 0 14px 32px rgba(31, 95, 153, 0.24),
@@ -339,52 +466,32 @@
 
     <div class="container">
         
-<section class="hero-slider" aria-label="Головні пропозиції">
-    <div class="hero-slider__track">
+        <section class="hero-slider" aria-label="Головні пропозиції">
+            <div class="hero-slider__track">
+                <a href="#" class="hero-slide is-active">
+                    <img src="images/hero-banner-37.jpg" alt="Банер Garmin 37">
+                </a>
+                <a href="#" class="hero-slide">
+                    <img src="images/hero-banner-38.jpg" alt="Банер Garmin 38" loading="lazy">
+                </a>
+                <a href="#" class="hero-slide">
+                    <img src="images/hero-banner-39.jpg" alt="Банер Garmin 39" loading="lazy">
+                </a>
+                <a href="#" class="hero-slide">
+                    <img src="images/hero-banner-40.jpg" alt="Банер Garmin 40" loading="lazy">
+                </a>
+                <a href="#" class="hero-slide">
+                    <img src="images/hero-banner-41.jpg" alt="Банер Garmin 41" loading="lazy">
+                </a>
+                <a href="#" class="hero-slide">
+                    <img src="images/hero-banner-42.jpg" alt="Банер Garmin 42" loading="lazy">
+                </a>
+            </div>
 
-        <a href="/garmin-tactix-8/" class="hero-slide is-active">
-            <img
-                src="images/hero-banner-01.jpg"
-                alt="Garmin tactix 8"
-            >
-        </a>
-
-        <a href="/garmin-venu-4/" class="hero-slide">
-            <img
-                src="images/hero-banner-01-0.jpg"
-                alt="Garmin Venu 4"
-                loading="lazy"
-            >
-        </a>
-
-        <a href="/smartwatches/" class="hero-slide">
-            <img
-                src="images/hero-banner-01-.jpg"
-                alt="Смарт-годинники Garmin"
-                loading="lazy"
-            >
-        </a>
-
-    </div>
-
-    <button
-        class="hero-slider__arrow hero-slider__arrow--prev"
-        type="button"
-        aria-label="Попередній банер"
-    >
-        ‹
-    </button>
-
-    <button
-        class="hero-slider__arrow hero-slider__arrow--next"
-        type="button"
-        aria-label="Наступний банер"
-    >
-        ›
-    </button>
-
-    <div class="hero-slider__dots" aria-label="Навігація слайдера"></div>
-</section>
+            <button class="hero-slider__arrow hero-slider__arrow--prev" type="button" aria-label="Попередній банер">‹</button>
+            <button class="hero-slider__arrow hero-slider__arrow--next" type="button" aria-label="Наступний банер">›</button>
+            <div class="hero-slider__dots" aria-label="Навігація слайдера"></div>
+        </section>
 
         <section class="trust-bar-section">
             <div class="trust-bar-container">
@@ -792,80 +899,73 @@
         <button class="widget-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Нагору">▲</button>
     </div>
 
-<script>
-document.querySelectorAll(".hero-slider").forEach((slider) => {
-    const slides = [...slider.querySelectorAll(".hero-slide")];
-    const prevButton = slider.querySelector(".hero-slider__arrow--prev");
-    const nextButton = slider.querySelector(".hero-slider__arrow--next");
-    const dotsContainer = slider.querySelector(".hero-slider__dots");
+    <script>
+        document.querySelectorAll(".hero-slider").forEach((slider) => {
+            const slides = [...slider.querySelectorAll(".hero-slide")];
+            const prevButton = slider.querySelector(".hero-slider__arrow--prev");
+            const nextButton = slider.querySelector(".hero-slider__arrow--next");
+            const dotsContainer = slider.querySelector(".hero-slider__dots");
+            let currentSlide = 0;
+            let autoplayTimer;
 
-    let currentSlide = 0;
-    let autoplayTimer;
+            const dots = slides.map((_, index) => {
+                const dot = document.createElement("button");
+                dot.type = "button";
+                dot.className = "hero-slider__dot";
+                dot.setAttribute("aria-label", `Показати банер ${index + 1}`);
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    restartAutoplay();
+                });
+                dotsContainer.appendChild(dot);
+                return dot;
+            });
 
-    const dots = slides.map((_, index) => {
-        const dot = document.createElement("button");
+            function showSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                slides.forEach((slide, slideIndex) => {
+                    slide.classList.toggle("is-active", slideIndex === currentSlide);
+                });
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle("is-active", dotIndex === currentSlide);
+                });
+            }
 
-        dot.type = "button";
-        dot.className = "hero-slider__dot";
-        dot.setAttribute("aria-label", `Показати банер ${index + 1}`);
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
 
-        dot.addEventListener("click", () => {
-            showSlide(index);
-            restartAutoplay();
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayTimer = setInterval(nextSlide, 6000);
+            }
+
+            function stopAutoplay() {
+                clearInterval(autoplayTimer);
+            }
+
+            function restartAutoplay() {
+                startAutoplay();
+            }
+
+            prevButton.addEventListener("click", () => {
+                showSlide(currentSlide - 1);
+                restartAutoplay();
+            });
+
+            nextButton.addEventListener("click", () => {
+                nextSlide();
+                restartAutoplay();
+            });
+
+            slider.addEventListener("mouseenter", stopAutoplay);
+            slider.addEventListener("mouseleave", startAutoplay);
+            slider.addEventListener("focusin", stopAutoplay);
+            slider.addEventListener("focusout", startAutoplay);
+
+            showSlide(0);
+            startAutoplay();
         });
-
-        dotsContainer.appendChild(dot);
-        return dot;
-    });
-
-    function showSlide(index) {
-        currentSlide = (index + slides.length) % slides.length;
-
-        slides.forEach((slide, slideIndex) => {
-            slide.classList.toggle("is-active", slideIndex === currentSlide);
-        });
-
-        dots.forEach((dot, dotIndex) => {
-            dot.classList.toggle("is-active", dotIndex === currentSlide);
-        });
-    }
-
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
-
-    function startAutoplay() {
-        autoplayTimer = setInterval(nextSlide, 6000);
-    }
-
-    function stopAutoplay() {
-        clearInterval(autoplayTimer);
-    }
-
-    function restartAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
-
-    prevButton.addEventListener("click", () => {
-        showSlide(currentSlide - 1);
-        restartAutoplay();
-    });
-
-    nextButton.addEventListener("click", () => {
-        nextSlide();
-        restartAutoplay();
-    });
-
-    slider.addEventListener("mouseenter", stopAutoplay);
-    slider.addEventListener("mouseleave", startAutoplay);
-    slider.addEventListener("focusin", stopAutoplay);
-    slider.addEventListener("focusout", startAutoplay);
-
-    showSlide(0);
-    startAutoplay();
-});
-</script>
-    
+    </script>
 </body>
 </html>
