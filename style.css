@@ -2,7 +2,7 @@
     --color-blue-main: #1F5F99;
     --color-blue-hover: #174A84;
     --color-bg-light: #F4F5F7;
-    --color-bg-white: #F4F5F7;
+    --color-bg-white: #FFFFFF;
     --color-text-dark: #111111;
     --color-text-gray: #666666;
     --color-border: #E2E8F0;
@@ -113,7 +113,7 @@ body {
 
 /* --- ЛИПКА СМУГА ШАПКИ --- */
 .main-header {
-    background-color: #FFFFFF;
+    background-color: #F4F5F7;
     padding: 14px 0;
     border-bottom: 1px solid var(--color-border);
     position: sticky;
