@@ -1,15 +1,15 @@
-:root {
+ :root {
     --color-blue-main: #1F5F99;
     --color-blue-hover: #174A84;
-    --color-bg-light: #F4F5F7;
+    --color-bg-light: #F5F7F9;
     --color-bg-white: #FFFFFF;
-    --color-text-dark: #111111;
-    --color-text-gray: #666666;
+    --color-text-dark: #111827;
+    --color-text-gray: #64748B;
     --color-border: #E2E8F0;
     --color-green: #16A34A;
     --color-red-badge: #E53E3E;
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.07);
-    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 6px 20px rgba(17, 24, 39, 0.05);
+    --shadow-card: 0 2px 10px rgba(17, 24, 39, 0.04);
 }
 
 * {
@@ -1517,3 +1517,214 @@ body > .container > section {
         0 14px 32px rgba(31, 95, 153, 0.24),
         0 3px 8px rgba(16, 42, 67, 0.10) !important;
 }
+
+/* ==========================================================
+   PREMIUM UI REFRESH — 08.08.2026
+   Requested palette, lighter trust bar, subtle shadows,
+   64–80 px section rhythm, and cleaner product cards.
+   ========================================================== */
+
+/* Color system */
+body {
+    background: #F5F7F9;
+    color: #111827;
+}
+
+.main-header {
+    background: #FFFFFF;
+    border-bottom-color: #E2E8F0;
+    box-shadow: 0 2px 12px rgba(17, 24, 39, 0.035);
+}
+
+.header-search input {
+    color: #111827;
+    background: #FFFFFF;
+    border-color: #1F5F99;
+}
+
+.action-item,
+.section-title-center,
+.product-mini-title,
+.main-price,
+.gap-lead {
+    color: #111827;
+}
+
+.product-mini-title:hover,
+.action-item:hover,
+.tab-pill.active,
+.gap-category strong,
+.gap-benefit b,
+.gap-stat strong,
+.gap-title {
+    color: #1F5F99;
+}
+
+.trust-text span,
+.tab-pill,
+.gap-section-subtitle,
+.gap-category p,
+.gap-benefit span,
+.gap-stat span {
+    color: #64748B;
+}
+
+/* 64–80 px vertical rhythm between primary homepage sections */
+body > .container > section {
+    margin-bottom: 72px;
+}
+
+/* Keep the page beginning balanced while preserving the new rhythm */
+.hero-slider {
+    margin-top: 16px;
+}
+
+/* Light trust/benefits bar with thin vertical separators */
+.trust-bar-section {
+    padding: 0;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-left: 1px solid #E2E8F0;
+    border-radius: 8px;
+    box-shadow: 0 3px 14px rgba(17, 24, 39, 0.04);
+    overflow: hidden;
+}
+
+.trust-bar-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+}
+
+.trust-pill {
+    position: relative;
+    min-width: 0;
+    padding: 18px 20px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease;
+}
+
+.trust-pill:hover {
+    transform: none;
+    background: #F8FAFC;
+    box-shadow: none !important;
+}
+
+.trust-pill:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 18%;
+    right: 0;
+    width: 1px;
+    height: 64%;
+    background: #E2E8F0;
+}
+
+.trust-text strong {
+    color: #111827;
+}
+
+/* Deliberately quiet elevation system */
+.hero-slider,
+.hero-banner-img,
+.pure-banner-card,
+.pure-card-item,
+.product-card-mini,
+.category-banner-card,
+.blog-left-large,
+.blog-right-stack img,
+.content-low-banner-img,
+.gap-about-banner,
+.gap-side,
+.gap-stat,
+.gap-category,
+.gap-benefit,
+.gap-card {
+    box-shadow: 0 4px 14px rgba(17, 24, 39, 0.045) !important;
+}
+
+.pure-banner-card:hover,
+.pure-card-item:hover,
+.product-card-mini:hover,
+.category-banner-card:hover,
+.gap-category:hover {
+    box-shadow: 0 7px 20px rgba(17, 24, 39, 0.065) !important;
+}
+
+.gap-final {
+    box-shadow: 0 5px 16px rgba(31, 95, 153, 0.08) !important;
+}
+
+.site-footer {
+    box-shadow: 0 -2px 12px rgba(17, 24, 39, 0.04);
+}
+
+/* Product cards: SKU/article is intentionally not surfaced on the homepage */
+.product-art {
+    display: none !important;
+}
+
+.product-card-mini {
+    background: #FFFFFF;
+    border-color: #E2E8F0;
+}
+
+/* Requested primary/hover treatment */
+.btn-catalog,
+.btn-buy-mini {
+    background: #1F5F99;
+}
+
+.btn-catalog:hover,
+.btn-buy-mini:hover,
+.hero-slider__arrow:hover {
+    background: #174A84;
+}
+
+/* Cleaner section heading */
+.use-cases-section .section-title-center {
+    color: #111827;
+    margin-bottom: 28px;
+}
+
+/* Avoid extra large gap before SEO block heading after the banner section */
+.garmin-about-heading {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+@media (max-width: 1024px) {
+    .trust-bar-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .trust-pill::after {
+        display: none;
+    }
+
+    .trust-pill {
+        border-bottom: 1px solid #E2E8F0;
+    }
+}
+
+@media (max-width: 768px) {
+    body > .container > section {
+        margin-bottom: 64px;
+    }
+
+    .trust-bar-container {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-pill {
+        padding: 16px 18px;
+    }
+
+    .trust-pill:not(:last-child) {
+        border-bottom: 1px solid #E2E8F0;
+    }
+}
+
