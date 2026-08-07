@@ -208,7 +208,10 @@ body {
 
 /* --- ГОЛОВНИЙ БАНЕР --- */
 .hero-banner-section {
+    width: min(2880px, calc(100vw - 20px));
     margin-top: 16px;
+    margin-left: 50%;
+    transform: translateX(-50%);
     box-shadow: var(--shadow-soft);
     border-radius: 7px;
 }

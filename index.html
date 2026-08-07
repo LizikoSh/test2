@@ -57,9 +57,12 @@
 
         .hero-slider {
             position: relative;
-            width: 100%;
+            width: min(2880px, calc(100vw - 20px));
             aspect-ratio: 2880 / 864;
+            margin-left: 50%;
+            margin-right: 0;
             margin-bottom: 24px;
+            transform: translateX(-50%);
             overflow: hidden;
             background: #f5f5f5;
             border-radius: 8px;
