@@ -342,7 +342,6 @@ body {
     display: block;
     border-radius: 7px;
 }
-
 /* --- БЛОК "ПОПУЛЯРНІ МОДЕЛІ" --- */
 .products-slider-section {
     margin-bottom: 40px;
@@ -1140,4 +1139,378 @@ body {
     .hero-slide {
         transition: none;
     }
+}
+
+/* ==========================================================
+   СТИЛІ СТОРІНКИ, ПЕРЕНЕСЕНІ З INDEX.HTML
+   Розташовані в кінці для збереження початкового пріоритету.
+   ========================================================== */
+
+.header-search button {
+    color: #8A8F98;
+}
+
+.header-search .search-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.top-bar .top-bar-item {
+    color: #FFFFFF;
+}
+
+.top-bar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    color: #FFFFFF;
+    flex: 0 0 auto;
+}
+
+.top-bar-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+body > .container > section {
+    margin-bottom: 56px;
+}
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2880 / 864;
+    margin-bottom: 24px;
+    overflow: hidden;
+    background: #f5f5f5;
+    border-radius: 8px;
+    box-shadow:
+        0 10px 24px rgba(16, 42, 67, 0.12),
+        0 2px 6px rgba(16, 42, 67, 0.08);
+}
+
+.hero-slider__track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.hero-slide.is-active {
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-slider__arrow {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: #ffffff;
+    font-size: 32px;
+    line-height: 1;
+    background: rgba(17, 24, 39, 0.48);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-slider__arrow:hover {
+    background: #1f5f99;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.hero-slider__arrow--prev {
+    left: 18px;
+}
+
+.hero-slider__arrow--next {
+    right: 18px;
+}
+
+.hero-slider__dots {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 16px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hero-slider__dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(17, 24, 39, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hero-slider__dot.is-active {
+    width: 28px;
+    background: #1f5f99;
+    border-color: #ffffff;
+    border-radius: 8px;
+}
+
+.trust-bar-section {
+    margin-bottom: 64px;
+    padding: 18px 20px;
+    background: #1F5F99;
+    border: 1px solid #1F5F99;
+    border-left: 5px solid #174A84;
+    border-radius: 8px;
+    box-shadow:
+        0 14px 30px rgba(31, 95, 153, 0.22),
+        0 2px 8px rgba(16, 42, 67, 0.10);
+}
+
+.trust-bar-container {
+    gap: 14px;
+}
+
+.trust-pill {
+    background: #FFFFFF;
+    border: 1px solid #DCEAF6;
+    border-radius: 7px;
+    box-shadow:
+        0 10px 24px rgba(16, 42, 67, 0.12),
+        0 2px 6px rgba(16, 42, 67, 0.08);
+}
+
+.trust-text strong {
+    color: #0F3760;
+}
+
+.garmin-about-premium {
+    width: 70% !important;
+    max-width: 70% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.garmin-about-premium,
+.garmin-about-premium * {
+    box-sizing: border-box;
+}
+
+.garmin-about-heading {
+    width: 70%;
+    margin: 0 auto 18px;
+    text-align: center;
+}
+
+.garmin-about-heading .gap-title {
+    display: inline-block;
+    margin: 0;
+    color: #111111 !important;
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+}
+
+.garmin-about-heading .gap-title span {
+    color: #111111 !important;
+}
+
+.garmin-about-heading .gap-title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin-top: 12px;
+    background: #1F5F99;
+    border-radius: 2px;
+}
+
+.gap-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.96), transparent 36%),
+        radial-gradient(circle at 92% 6%, rgba(255, 255, 255, 0.62), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #f4f4f4 24%, #e5e5e5 48%, #f7f7f7 72%, #d8d8d8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    box-shadow:
+        0 18px 46px rgba(16, 42, 67, 0.16),
+        0 3px 10px rgba(16, 42, 67, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.gap-card::after {
+    content: "";
+    position: absolute;
+    right: -150px;
+    top: -150px;
+    width: 380px;
+    height: 380px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.28) 38%, transparent 70%);
+    pointer-events: none;
+}
+
+.gap-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.gap-card .gap-hero {
+    padding: 42px 46px 34px;
+    background: transparent !important;
+}
+
+.gap-card .gap-section {
+    padding: 34px 46px;
+    background: transparent !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.66);
+}
+
+.gap-about-banner {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 28px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.gap-categories--audience {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gap-section-title,
+.gap-final h3 {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+}
+
+.content-low-banner-section {
+    width: 100%;
+}
+
+.content-low-banner-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 6 / 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.hero-banner-img,
+.pure-banner-card,
+.pure-card-item,
+.product-card-mini,
+.category-banner-card,
+.blog-left-large,
+.blog-right-stack img,
+.content-low-banner-img,
+.gap-about-banner,
+.gap-side,
+.gap-stat,
+.gap-category,
+.gap-benefit {
+    box-shadow:
+        0 10px 24px rgba(16, 42, 67, 0.12),
+        0 2px 6px rgba(16, 42, 67, 0.08) !important;
+}
+
+.pure-banner-card,
+.pure-card-item,
+.category-banner-card,
+.blog-left-large,
+.blog-right-stack img {
+    border-radius: 8px;
+}
+
+
+/* Банери блоку «Смарт-годинники для ваших завдань»: формат 960 × 480 px */
+.grid-3x2-pure .pure-card-item {
+    aspect-ratio: 960 / 480;
+}
+
+.grid-3x2-pure .pure-card-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .hero-slider {
+        aspect-ratio: 16 / 9;
+    }
+
+    .hero-slider__arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 26px;
+    }
+
+    .hero-slider__arrow--prev {
+        left: 8px;
+    }
+
+    .hero-slider__arrow--next {
+        right: 8px;
+    }
+
+    .hero-slider__dots {
+        bottom: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide {
+        transition: none;
+    }
+}
+
+.gap-final {
+    box-shadow:
+        0 14px 32px rgba(31, 95, 153, 0.24),
+        0 3px 8px rgba(16, 42, 67, 0.10) !important;
 }
