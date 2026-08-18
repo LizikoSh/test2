@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light only">
+  <title>4Garmin — інтерактивний контент-план Instagram</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <div class="profile-head-wrap">
+      <img class="profile-header" src="assets/profile-header.jpg" alt="Верх профілю Instagram 4garmin">
+      <button id="storyAvatarHotspot" class="story-avatar-hotspot" type="button" aria-label="Відкрити заплановані Stories">
+        <span class="story-ring-pulse"></span>
+      </button>
+      <div class="story-hint">Stories</div>
+    </div>
+
+    <div class="grid-note" aria-label="Порядок публікацій">
+      <span>№01 — унизу праворуч</span>
+      <span>Далі — справа наліво</span>
+      <span>Новіші — вище</span>
+      <span>Натисніть на обкладинку</span>
+      <span>Натисніть на аватар — Stories</span>
+    </div>
+
+    <section id="feed" class="feed" aria-label="Стрічка запланованих дописів"></section>
+    <p class="footer-note">Офлайн-макет. Обкладинки відкривають фінальний вигляд допису, аватар — заплановані Stories.</p>
+  </main>
+
+  <div id="modal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="postTitle">
+    <div class="post-shell">
+      <button id="closeModal" class="close-modal" aria-label="Закрити">×</button>
+      <div class="post-layout">
+        <div class="post-media-wrap">
+          <img id="postImage" class="post-media" src="" alt="">
+          <div id="postCounter" class="post-counter"></div>
+          <div id="postTypeBadge" class="post-badge"></div>
+        </div>
+        <div class="post-side">
+          <header class="ig-header">
+            <div class="ig-profile">
+              <img class="ig-avatar" src="assets/avatar.png" alt="4garmin logo">
+              <div class="ig-username">4garmin</div>
+            </div>
+            <div class="ig-dots">•••</div>
+          </header>
+
+          <section class="ig-caption-block">
+            <div class="ig-caption-scroll">
+              <div class="ig-caption-row">
+                <img class="ig-avatar ig-avatar-small" src="assets/avatar.png" alt="4garmin logo">
+                <div class="ig-caption-text">
+                  <p><strong>4garmin</strong> <span id="postCaption"></span></p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ig-actions-block">
+            <div class="ig-actions">
+              <div class="ig-actions-left">
+                <span>♡</span><span>◌</span><span>➤</span>
+              </div>
+              <div>⌑</div>
+            </div>
+            <div class="ig-meta-line"><strong>Заплановано:</strong> <span id="postDate"></span></div>
+            <div class="ig-meta-line"><strong>CTA:</strong> <span id="postCta"></span></div>
+          </section>
+
+          <details class="prod-notes">
+            <summary>Показати виробничі нотатки</summary>
+            <div class="notes-inner">
+              <div class="note-section"><h3>Структура</h3><ol id="postSlides"></ol></div>
+              <div class="note-section"><h3>Stories-підтримка</h3><ul id="postStories"></ul></div>
+              <div class="note-section"><h3>Підказка для дизайну</h3><p id="postLayout"></p></div>
+            </div>
+          </details>
+
+          <div class="post-nav">
+            <button id="prevPost" type="button">← Попередній</button>
+            <button id="nextPost" type="button">Наступний →</button>
+          </div>
+        </div>
+      </div>
+      <h2 id="postTitle" class="sr-only"></h2>
+    </div>
+  </div>
+
+  <div id="storiesOverlay" class="stories-overlay" role="dialog" aria-modal="true" aria-label="Заплановані Stories 4garmin">
+    <div class="stories-stage">
+      <div class="stories-progress" id="storiesProgress"></div>
+
+      <div class="stories-topbar">
+        <div class="stories-user">
+          <img src="assets/avatar.png" alt="4garmin">
+          <div>
+            <strong>4garmin</strong>
+            <span id="storyDate"></span>
+          </div>
+        </div>
+        <button id="closeStories" class="stories-close" type="button" aria-label="Закрити Stories">×</button>
+      </div>
+
+      <article id="storyCard" class="story-card">
+        <div class="story-content">
+          <div id="storyEyebrow" class="story-eyebrow"></div>
+          <h2 id="storyTitle" class="story-title"></h2>
+          <p id="storyBody" class="story-body"></p>
+          <div id="storyWidget" class="story-widget"></div>
+          <p id="storyFooter" class="story-footer"></p>
+        </div>
+      </article>
+
+      <button id="storyPrev" class="story-tap story-tap-left" aria-label="Попередня Story"></button>
+      <button id="storyNext" class="story-tap story-tap-right" aria-label="Наступна Story"></button>
+
+      <div class="stories-bottom">
+        <div id="storyIndex" class="story-index"></div>
+        <button id="openRelatedPost" class="story-related" type="button">Відкрити пов’язаний допис</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
