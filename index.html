@@ -16,7 +16,6 @@
       </button>
       <div class="story-hint">Stories</div>
     </div>
-
     <div class="grid-note" aria-label="Порядок публікацій">
       <span>№01 — унизу праворуч</span>
       <span>Далі — справа наліво</span>
@@ -24,64 +23,72 @@
       <span>Натисніть на обкладинку</span>
       <span>Натисніть на аватар — Stories</span>
     </div>
-
     <section id="feed" class="feed" aria-label="Стрічка запланованих дописів"></section>
     <p class="footer-note">Офлайн-макет. Обкладинки відкривають фінальний вигляд допису, аватар — заплановані Stories.</p>
   </main>
 
   <div id="modal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="postTitle">
-    <div class="post-shell">
-      <button id="closeModal" class="close-modal" aria-label="Закрити">×</button>
-      <div class="post-layout">
-        <div class="post-media-wrap">
-          <img id="postImage" class="post-media" src="" alt="">
-          <div id="postCounter" class="post-counter"></div>
-          <div id="postTypeBadge" class="post-badge"></div>
-        </div>
-        <div class="post-side">
-          <header class="ig-header">
-            <div class="ig-profile">
-              <img class="ig-avatar" src="assets/avatar.png" alt="4garmin logo">
-              <div class="ig-username">4garmin</div>
-            </div>
-            <div class="ig-dots">•••</div>
-          </header>
+    <div class="mobile-post-shell">
+      <div class="mobile-post-view">
+        <header class="mobile-topbar">
+          <button id="backPost" class="mobile-back" type="button" aria-label="Назад">←</button>
+          <div class="mobile-topbar-title">Дописи</div>
+          <div class="mobile-topbar-spacer"></div>
+        </header>
 
-          <section class="ig-caption-block">
-            <div class="ig-caption-scroll">
-              <div class="ig-caption-row">
-                <img class="ig-avatar ig-avatar-small" src="assets/avatar.png" alt="4garmin logo">
-                <div class="ig-caption-text">
-                  <p><strong>4garmin</strong> <span id="postCaption"></span></p>
-                </div>
-              </div>
+        <section class="mobile-author-row">
+          <div class="mobile-author-left">
+            <img class="mobile-avatar" src="assets/avatar.png" alt="4garmin logo">
+            <div>
+              <div class="mobile-username">4garmin</div>
+              <div class="mobile-subline">♫ <span class="dot-sep">·</span></div>
             </div>
-          </section>
-
-          <section class="ig-actions-block">
-            <div class="ig-actions">
-              <div class="ig-actions-left">
-                <span>♡</span><span>◌</span><span>➤</span>
-              </div>
-              <div>⌑</div>
-            </div>
-            <div class="ig-meta-line"><strong>Заплановано:</strong> <span id="postDate"></span></div>
-            <div class="ig-meta-line"><strong>CTA:</strong> <span id="postCta"></span></div>
-          </section>
-
-          <details class="prod-notes">
-            <summary>Показати виробничі нотатки</summary>
-            <div class="notes-inner">
-              <div class="note-section"><h3>Структура</h3><ol id="postSlides"></ol></div>
-              <div class="note-section"><h3>Stories-підтримка</h3><ul id="postStories"></ul></div>
-              <div class="note-section"><h3>Підказка для дизайну</h3><p id="postLayout"></p></div>
-            </div>
-          </details>
-
-          <div class="post-nav">
-            <button id="prevPost" type="button">← Попередній</button>
-            <button id="nextPost" type="button">Наступний →</button>
           </div>
+          <button class="mobile-menu-btn" type="button" aria-label="Меню">☰</button>
+        </section>
+
+        <section class="mobile-media-section">
+          <div class="mobile-media-wrap">
+            <img id="postImage" class="mobile-media" src="" alt="">
+          </div>
+        </section>
+
+        <section class="mobile-admin-row">
+          <button class="ghost-btn" type="button">Переглянути статистику</button>
+          <button class="promote-btn" type="button">Просувати допис</button>
+        </section>
+
+        <div id="carouselDots" class="carousel-dots" aria-label="Позиція в каруселі"></div>
+
+        <section class="mobile-actions-row">
+          <div class="mobile-actions-left">
+            <div class="act"><span class="icon">♡</span><span id="countLikes">4</span></div>
+            <div class="act"><span class="icon">◌</span><span id="countComments">1</span></div>
+            <div class="act"><span class="icon">↻</span><span id="countReposts">1</span></div>
+            <div class="act solo"><span class="icon">➤</span></div>
+          </div>
+          <div class="bookmark-wrap"><span class="icon">⌑</span></div>
+        </section>
+
+        <section class="mobile-caption-section">
+          <div class="mobile-caption-text"><strong>4garmin</strong> <span id="postCaption"></span></div>
+          <div id="postHashtags" class="mobile-hashtags"></div>
+          <div id="postTime" class="mobile-time"></div>
+        </section>
+
+        <details class="prod-notes mobile-notes">
+          <summary>Показати виробничі нотатки</summary>
+          <div class="notes-inner">
+            <div class="note-section"><h3>Структура</h3><ol id="postSlides"></ol></div>
+            <div class="note-section"><h3>Stories-підтримка</h3><ul id="postStories"></ul></div>
+            <div class="note-section"><h3>Підказка для дизайну</h3><p id="postLayout"></p></div>
+            <div class="note-section"><h3>CTA</h3><p id="postCta"></p></div>
+          </div>
+        </details>
+
+        <div class="mobile-post-nav">
+          <button id="prevPost" type="button">← Попередній</button>
+          <button id="nextPost" type="button">Наступний →</button>
         </div>
       </div>
       <h2 id="postTitle" class="sr-only"></h2>
@@ -91,7 +98,6 @@
   <div id="storiesOverlay" class="stories-overlay" role="dialog" aria-modal="true" aria-label="Заплановані Stories 4garmin">
     <div class="stories-stage">
       <div class="stories-progress" id="storiesProgress"></div>
-
       <div class="stories-topbar">
         <div class="stories-user">
           <img src="assets/avatar.png" alt="4garmin">
@@ -102,7 +108,6 @@
         </div>
         <button id="closeStories" class="stories-close" type="button" aria-label="Закрити Stories">×</button>
       </div>
-
       <article id="storyCard" class="story-card">
         <div class="story-content">
           <div id="storyEyebrow" class="story-eyebrow"></div>
@@ -112,10 +117,8 @@
           <p id="storyFooter" class="story-footer"></p>
         </div>
       </article>
-
       <button id="storyPrev" class="story-tap story-tap-left" aria-label="Попередня Story"></button>
       <button id="storyNext" class="story-tap story-tap-right" aria-label="Наступна Story"></button>
-
       <div class="stories-bottom">
         <div id="storyIndex" class="story-index"></div>
         <button id="openRelatedPost" class="story-related" type="button">Відкрити пов’язаний допис</button>

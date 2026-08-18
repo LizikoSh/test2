@@ -3,157 +3,28 @@ const STORIES = [{"id": 1, "date": "19 серпня", "type": "poll", "eyebrow":
 
 const feed = document.getElementById('feed');
 const modal = document.getElementById('modal');
-const closeModalBtn = document.getElementById('closeModal');
+const backPostBtn = document.getElementById('backPost');
 const prevPostBtn = document.getElementById('prevPost');
 const nextPostBtn = document.getElementById('nextPost');
 let activeIndex = 0;
 
-function esc(str) {
-  return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'", '&#039;');
-}
+function esc(str) { return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'", '&#039;'); }
 function nlToHtml(str) { return esc(str).replace(/\n/g, '<br>'); }
 function listHtml(items) { return items.map(item => `<li>${esc(item)}</li>`).join(''); }
-
-[...POSTS].reverse().forEach(post => {
-  const btn = document.createElement('button');
-  btn.type = 'button'; btn.className = 'tile';
-  btn.setAttribute('aria-label', `Відкрити допис ${post.n}: ${post.title}`);
-  btn.innerHTML = `<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}"><span class="seq">${String(post.n).padStart(2,'0')}</span>`;
-  btn.addEventListener('click', () => openPost(post.n - 1));
-  feed.appendChild(btn);
-});
-
-function openPost(index) {
-  activeIndex = (index + POSTS.length) % POSTS.length;
-  const post = POSTS[activeIndex];
-  document.getElementById('postTitle').textContent = post.title;
-  document.getElementById('postImage').src = `assets/post-${String(post.n).padStart(2,'0')}.jpg`;
-  document.getElementById('postImage').alt = post.title;
-  document.getElementById('postCounter').textContent = post.count > 1 ? `1/${post.count}` : '';
-  document.getElementById('postTypeBadge').textContent = post.format;
-  document.getElementById('postDate').textContent = post.date;
-  document.getElementById('postCaption').innerHTML = nlToHtml(post.caption);
-  document.getElementById('postCta').textContent = post.cta;
-  document.getElementById('postSlides').innerHTML = listHtml(post.slides);
-  document.getElementById('postStories').innerHTML = listHtml(post.stories);
-  document.getElementById('postLayout').textContent = post.layout;
-  modal.classList.add('open'); document.body.style.overflow = 'hidden';
-}
+function makeDots(count) { if (!count || count < 2) return ''; return Array.from({length: count}, (_,i) => `<span class="carousel-dot ${i===0?'active':''}"></span>`).join(''); }
+function inferHashtags(post) { const t = (post.title || '').toLowerCase(); const tags = ['#4garmin_смартгодинники', '#garminukraine']; if (t.includes('connect') || t.includes('сповіщ')) tags.push('#garmin_функції'); else if (t.includes('воду') || t.includes('водо')) tags.push('#garmin_водозахист'); else if (t.includes('tactix')) tags.push('#garmin_tactix'); else if (t.includes('fēnix') || t.includes('fenix')) tags.push('#garmin_fenix'); else if (t.includes('edge')) tags.push('#garmin_edge'); else if (t.includes('tacx')) tags.push('#garmin_tacx'); else tags.push('#garmin'); return tags.join(' '); }
+function metricSeed(n) { return { likes: 3 + (n % 9), comments: n % 3, reposts: (n+1) % 2 }; }
+[...POSTS].reverse().forEach(post => { const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'tile'; btn.setAttribute('aria-label', `Відкрити допис ${post.n}: ${post.title}`); btn.innerHTML = `<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}"><span class="seq">${String(post.n).padStart(2,'0')}</span>`; btn.addEventListener('click', () => openPost(post.n - 1)); feed.appendChild(btn); });
+function openPost(index) { activeIndex = (index + POSTS.length) % POSTS.length; const post = POSTS[activeIndex]; const metrics = metricSeed(post.n); document.getElementById('postTitle').textContent = post.title; document.getElementById('postImage').src = `assets/post-${String(post.n).padStart(2,'0')}.jpg`; document.getElementById('postImage').alt = post.title; document.getElementById('postCaption').innerHTML = nlToHtml(post.caption); document.getElementById('postHashtags').textContent = inferHashtags(post); document.getElementById('postTime').textContent = `${post.date} · заплановано`; document.getElementById('postSlides').innerHTML = listHtml(post.slides); document.getElementById('postStories').innerHTML = listHtml(post.stories); document.getElementById('postLayout').textContent = post.layout; document.getElementById('postCta').textContent = post.cta; document.getElementById('carouselDots').innerHTML = makeDots(post.count || 1); document.getElementById('countLikes').textContent = metrics.likes; document.getElementById('countComments').textContent = metrics.comments; document.getElementById('countReposts').textContent = metrics.reposts; modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-closeModalBtn.addEventListener('click', closeModal);
-prevPostBtn.addEventListener('click', () => openPost(activeIndex - 1));
-nextPostBtn.addEventListener('click', () => openPost(activeIndex + 1));
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-/* ===== STORIES ===== */
-const storiesOverlay = document.getElementById('storiesOverlay');
-const storyAvatarHotspot = document.getElementById('storyAvatarHotspot');
-const closeStories = document.getElementById('closeStories');
-const storyPrev = document.getElementById('storyPrev');
-const storyNext = document.getElementById('storyNext');
-const openRelatedPost = document.getElementById('openRelatedPost');
-let storyIndex = 0;
-
-function renderProgress() {
-  const wrap = document.getElementById('storiesProgress');
-  wrap.innerHTML = STORIES.map((_, i) => `<span class="story-progress-segment ${i < storyIndex ? 'done' : i === storyIndex ? 'active' : ''}"></span>`).join('');
-}
-
-function storyWidgetHtml(story) {
-  if (story.type === 'poll') {
-    return story.options.map((o,i) => `<button class="story-option" data-option="${i}">${esc(o)}</button>`).join('');
-  }
-  if (story.type === 'quiz') {
-    return story.options.map((o,i) => `<button class="story-option" data-option="${i}" data-correct="${i === story.correct ? '1':'0'}">${esc(o)}</button>`).join('');
-  }
-  if (story.type === 'question') {
-    return `<div class="story-question-box"><span>Стікер «Питання»</span><div>${esc(story.placeholder || 'Ваша відповідь…')}</div></div>`;
-  }
-  if (story.type === 'share') {
-    return `<button class="story-share-button" type="button">${esc(story.button || 'Дивитися допис')}</button>`;
-  }
-  if (story.type === 'quote') {
-    return `<div class="story-quote">${esc(story.body)}</div>`;
-  }
-  return '';
-}
-
-function renderStory() {
-  const s = STORIES[storyIndex];
-  renderProgress();
-  document.getElementById('storyDate').textContent = s.date;
-  document.getElementById('storyEyebrow').textContent = s.eyebrow || '';
-  document.getElementById('storyTitle').textContent = s.title || '';
-  document.getElementById('storyBody').textContent = s.type === 'quote' ? '' : (s.body || '');
-  document.getElementById('storyFooter').textContent = s.footer || '';
-  document.getElementById('storyIndex').textContent = `${storyIndex+1} / ${STORIES.length}`;
-  const card = document.getElementById('storyCard');
-  card.className = `story-card bg-${s.bg || 'dark'}`;
-  const widget = document.getElementById('storyWidget');
-  widget.innerHTML = storyWidgetHtml(s);
-
-  widget.querySelectorAll('.story-option').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      widget.querySelectorAll('.story-option').forEach(b => b.classList.remove('selected','correct','wrong'));
-      if (s.type === 'quiz') {
-        btn.classList.add(btn.dataset.correct === '1' ? 'correct' : 'wrong');
-        if (btn.dataset.correct !== '1') {
-          widget.querySelector('[data-correct="1"]')?.classList.add('correct');
-        }
-      } else {
-        btn.classList.add('selected');
-      }
-    });
-  });
-
-  widget.querySelector('.story-share-button')?.addEventListener('click', e => {
-    e.stopPropagation();
-    if (s.post) {
-      closeStoriesViewer();
-      openPost(s.post - 1);
-    }
-  });
-
-  openRelatedPost.style.display = s.post ? '' : 'none';
-}
-
-function openStoriesViewer(start=0) {
-  storyIndex = Math.max(0, Math.min(STORIES.length-1,start));
-  renderStory();
-  storiesOverlay.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeStoriesViewer() {
-  storiesOverlay.classList.remove('open');
-  document.body.style.overflow='';
-}
-function nextStory() {
-  if (storyIndex >= STORIES.length-1) closeStoriesViewer();
-  else { storyIndex++; renderStory(); }
-}
-function prevStory() {
-  if (storyIndex > 0) { storyIndex--; renderStory(); }
-}
-
-storyAvatarHotspot.addEventListener('click', () => openStoriesViewer(0));
-closeStories.addEventListener('click', closeStoriesViewer);
-storyNext.addEventListener('click', nextStory);
-storyPrev.addEventListener('click', prevStory);
-openRelatedPost.addEventListener('click', () => {
-  const s = STORIES[storyIndex];
-  if (s.post) { closeStoriesViewer(); openPost(s.post-1); }
-});
-
-document.addEventListener('keydown', e => {
-  if (storiesOverlay.classList.contains('open')) {
-    if (e.key === 'Escape') closeStoriesViewer();
-    if (e.key === 'ArrowRight') nextStory();
-    if (e.key === 'ArrowLeft') prevStory();
-    return;
-  }
-  if (!modal.classList.contains('open')) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft') openPost(activeIndex - 1);
-  if (e.key === 'ArrowRight') openPost(activeIndex + 1);
-});
+backPostBtn.addEventListener('click', closeModal); prevPostBtn.addEventListener('click', () => openPost(activeIndex - 1)); nextPostBtn.addEventListener('click', () => openPost(activeIndex + 1)); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+const storiesOverlay = document.getElementById('storiesOverlay'); const storyAvatarHotspot = document.getElementById('storyAvatarHotspot'); const closeStories = document.getElementById('closeStories'); const storyPrev = document.getElementById('storyPrev'); const storyNext = document.getElementById('storyNext'); const openRelatedPost = document.getElementById('openRelatedPost'); let storyIndex = 0;
+function renderProgress() { const wrap = document.getElementById('storiesProgress'); wrap.innerHTML = STORIES.map((_, i) => `<span class="story-progress-segment ${i < storyIndex ? 'done' : i === storyIndex ? 'active' : ''}"></span>`).join(''); }
+function storyWidgetHtml(story) { if (story.type === 'poll') return story.options.map((o,i) => `<button class="story-option" data-option="${i}">${esc(o)}</button>`).join(''); if (story.type === 'quiz') return story.options.map((o,i) => `<button class="story-option" data-option="${i}" data-correct="${i === story.correct ? '1':'0'}">${esc(o)}</button>`).join(''); if (story.type === 'question') return `<div class="story-question-box"><span>Стікер «Питання»</span><div>${esc(story.placeholder || 'Ваша відповідь…')}</div></div>`; if (story.type === 'share') return `<button class="story-share-button" type="button">${esc(story.button || 'Дивитися допис')}</button>`; if (story.type === 'quote') return `<div class="story-quote">${esc(story.body)}</div>`; return ''; }
+function renderStory() { const s = STORIES[storyIndex]; renderProgress(); document.getElementById('storyDate').textContent = s.date; document.getElementById('storyEyebrow').textContent = s.eyebrow || ''; document.getElementById('storyTitle').textContent = s.title || ''; document.getElementById('storyBody').textContent = s.type === 'quote' ? '' : (s.body || ''); document.getElementById('storyFooter').textContent = s.footer || ''; document.getElementById('storyIndex').textContent = `${storyIndex+1} / ${STORIES.length}`; const card = document.getElementById('storyCard'); card.className = `story-card bg-${s.bg || 'dark'}`; const widget = document.getElementById('storyWidget'); widget.innerHTML = storyWidgetHtml(s); widget.querySelectorAll('.story-option').forEach(btn => { btn.addEventListener('click', e => { e.stopPropagation(); widget.querySelectorAll('.story-option').forEach(b => b.classList.remove('selected','correct','wrong')); if (s.type === 'quiz') { btn.classList.add(btn.dataset.correct === '1' ? 'correct' : 'wrong'); if (btn.dataset.correct !== '1') widget.querySelector('[data-correct="1"]')?.classList.add('correct'); } else btn.classList.add('selected'); }); }); widget.querySelector('.story-share-button')?.addEventListener('click', e => { e.stopPropagation(); if (s.post) { closeStoriesViewer(); openPost(s.post - 1); } }); openRelatedPost.style.display = s.post ? '' : 'none'; }
+function openStoriesViewer(start=0) { storyIndex = Math.max(0, Math.min(STORIES.length-1,start)); renderStory(); storiesOverlay.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeStoriesViewer() { storiesOverlay.classList.remove('open'); document.body.style.overflow=''; }
+function nextStory() { if (storyIndex >= STORIES.length-1) closeStoriesViewer(); else { storyIndex++; renderStory(); } }
+function prevStory() { if (storyIndex > 0) { storyIndex--; renderStory(); } }
+storyAvatarHotspot.addEventListener('click', () => openStoriesViewer(0)); closeStories.addEventListener('click', closeStoriesViewer); storyNext.addEventListener('click', nextStory); storyPrev.addEventListener('click', prevStory); openRelatedPost.addEventListener('click', () => { const s = STORIES[storyIndex]; if (s.post) { closeStoriesViewer(); openPost(s.post-1); } });
+document.addEventListener('keydown', e => { if (storiesOverlay.classList.contains('open')) { if (e.key === 'Escape') closeStoriesViewer(); if (e.key === 'ArrowRight') nextStory(); if (e.key === 'ArrowLeft') prevStory(); return; } if (!modal.classList.contains('open')) return; if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') openPost(activeIndex - 1); if (e.key === 'ArrowRight') openPost(activeIndex + 1); });
