@@ -34,3 +34,35 @@
 @media(max-width:560px){.slide-nav{width:34px;height:48px;font-size:32px}.slide-nav-prev{left:6px}.slide-nav-next{right:6px}}
 
 .tile-placeholder{aspect-ratio:1/1;background:#fff;border:1px solid #fff;box-shadow:0 0 0 2px #fff;}
+
+
+/* ===== Continuous posts viewer v5 ===== */
+.continuous-overlay{position:fixed;inset:0;z-index:180;display:none;background:#eef0f3;overflow:hidden}.continuous-overlay.open{display:block}
+.continuous-shell{height:100%;display:flex;flex-direction:column;max-width:1380px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(0,0,0,.12)}
+.continuous-toolbar{flex:0 0 auto;height:64px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid #e7e9ed;background:rgba(255,255,255,.97);z-index:10}
+.continuous-toolbar>div{display:grid;gap:1px;min-width:0}.continuous-toolbar strong{font-size:19px}.continuous-toolbar span{font-size:12px;color:#747982}
+.continuous-back{width:42px;height:42px;border:0;border-radius:50%;background:#f3f4f6;font-size:26px;cursor:pointer}.jump-btn{margin-left:auto;border:1px solid #d9dde3;background:#fff;border-radius:999px;padding:9px 13px;font-weight:700;cursor:pointer}
+.continuous-feed{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;background:#f5f6f7;padding:24px}
+.continuous-post{max-width:1120px;margin:0 auto 28px;background:#fff;border:1px solid #e1e4e8;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(20,26,32,.05);scroll-margin-top:18px}
+.continuous-post-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);min-height:620px}
+.continuous-media-col{min-width:0;background:#0c0d0f;display:flex;flex-direction:column;justify-content:center;position:relative}
+.continuous-media-wrap{position:relative;overflow:hidden;display:grid;place-items:center;min-height:590px;background:#0c0d0f}
+.continuous-media{width:100%;height:100%;max-height:720px;object-fit:contain;display:block;background:#0c0d0f}
+.continuous-slide-prev,.continuous-slide-next{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:42px;height:54px;border:0;border-radius:999px;background:rgba(0,0,0,.34);color:#fff;font-size:34px;cursor:pointer}.continuous-slide-prev{left:10px}.continuous-slide-next{right:10px}.continuous-slide-prev[hidden],.continuous-slide-next[hidden]{display:none}
+.continuous-dots{display:flex;justify-content:center;gap:5px;min-height:22px;padding:9px;background:#fff}.continuous-dot{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:#d5d7dc;cursor:pointer}.continuous-dot.active{background:#4f61f2}
+.continuous-text-col{min-width:0;display:flex;flex-direction:column;background:#fff}
+.continuous-author{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid #eceef1}.continuous-author img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid #ddd}.continuous-author-meta{display:grid;gap:2px}.continuous-author-meta strong{font-size:15px}.continuous-author-meta span{font-size:12px;color:#7a7e86}.continuous-post-num{margin-left:auto;font-size:12px;color:#777;border:1px solid #e1e4e8;border-radius:999px;padding:5px 8px}
+.continuous-caption{padding:18px;font-size:15px;line-height:1.55;white-space:pre-line;color:#202327;overflow:auto;flex:1}.continuous-caption strong{font-size:16px}.continuous-caption .caption-body{white-space:pre-line}.continuous-hashtags{margin-top:14px;color:#3556d2}.continuous-date{margin-top:12px;color:#8a8e95;font-size:12px}.continuous-actions{display:flex;align-items:center;gap:16px;padding:12px 18px;border-top:1px solid #eceef1;font-size:22px}.continuous-actions .save{margin-left:auto}.continuous-notes{border-top:1px solid #eceef1}.continuous-notes summary{cursor:pointer;padding:12px 18px;font-size:13px;font-weight:700}.continuous-notes-inner{padding:0 18px 18px;font-size:13px;line-height:1.5}.continuous-notes-inner h4{margin:14px 0 6px;font-size:11px;text-transform:uppercase;color:#777;letter-spacing:.05em}.continuous-notes-inner ul,.continuous-notes-inner ol{margin:0;padding-left:20px}
+
+/* Mobile: one continuous vertical strip. DOM order is latest -> oldest, so #01 is physically at bottom. */
+@media(max-width:760px){
+  .continuous-overlay{background:#fff}.continuous-shell{max-width:none;box-shadow:none}.continuous-toolbar{height:56px;padding:0 12px;position:sticky;top:0}.continuous-toolbar strong{font-size:18px}.jump-btn{padding:8px 10px;font-size:12px}
+  .continuous-feed{padding:0;background:#fff;scroll-snap-type:y proximity}
+  .continuous-post{margin:0;border:0;border-radius:0;box-shadow:none;border-bottom:10px solid #f1f2f4;scroll-snap-align:start}
+  .continuous-post-grid{display:block;min-height:0}
+  .continuous-media-col{background:#fff}.continuous-media-wrap{min-height:0;background:#fff;touch-action:pan-y}
+  .continuous-media{width:100%;height:auto;max-height:none;aspect-ratio:4/5;object-fit:cover;background:#f6f6f6}
+  .continuous-slide-prev,.continuous-slide-next{width:34px;height:48px;font-size:30px}
+  .continuous-text-col{display:block}.continuous-author{padding:12px 14px}.continuous-author img{width:38px;height:38px}.continuous-caption{padding:14px;font-size:16px;overflow:visible}.continuous-actions{padding:10px 14px}.continuous-notes{display:none}.continuous-dots{padding:7px 0 4px}
+}
+@media(min-width:761px){.continuous-feed{scrollbar-gutter:stable}.continuous-post:first-child{margin-top:0}}
