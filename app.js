@@ -6,9 +6,14 @@ const modal = document.getElementById('modal');
 const backPostBtn = document.getElementById('backPost');
 const prevPostBtn = document.getElementById('prevPost');
 const nextPostBtn = document.getElementById('nextPost');
+const modalView = document.querySelector('.mobile-post-view');
 let activeIndex = 0;
 let activeSlide = 0;
 let touchStartX = null;
+let touchStartY = null;
+let modalTouchStartX = null;
+let modalTouchStartY = null;
+let wheelLock = false;
 
 function getPostImages(post) {
   return Array.isArray(post.images) && post.images.length
@@ -59,6 +64,21 @@ function changeSlide(delta) {
   renderPostSlide();
 }
 
+function openAdjacentPost(delta) {
+  openPost(activeIndex + delta);
+}
+
+function handleVerticalPostSwipe(endX, endY) {
+  if (modalTouchStartY === null || modalTouchStartX === null) return;
+  const dx = endX - modalTouchStartX;
+  const dy = endY - modalTouchStartY;
+  modalTouchStartX = null;
+  modalTouchStartY = null;
+  if (Math.abs(dy) < 70) return;
+  if (Math.abs(dy) <= Math.abs(dx) * 1.2) return;
+  openAdjacentPost(dy < 0 ? 1 : -1);
+}
+
 function esc(str) { return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'", '&#039;'); }
 function nlToHtml(str) { return esc(str).replace(/\n/g, '<br>'); }
 function listHtml(items) { return items.map(item => `<li>${esc(item)}</li>`).join(''); }
@@ -82,7 +102,21 @@ for (let i = 0; i < leadingBlanks; i++) {
 });
 function openPost(index) { activeIndex = (index + POSTS.length) % POSTS.length; activeSlide = 0; const post = POSTS[activeIndex]; const metrics = metricSeed(post.n); document.getElementById('postTitle').textContent = post.title; ensureCarouselControls(); renderPostSlide(); document.getElementById('postCaption').innerHTML = nlToHtml(post.caption); const hashtags = inferHashtags(post); const hashtagEl = document.getElementById('postHashtags'); hashtagEl.textContent = hashtags; hashtagEl.style.display = hashtags ? '' : 'none'; document.getElementById('postTime').textContent = `${post.date} · заплановано`; document.getElementById('postSlides').innerHTML = listHtml(post.slides); document.getElementById('postStories').innerHTML = listHtml(post.stories); document.getElementById('postLayout').textContent = post.layout; document.getElementById('postCta').textContent = post.cta; document.getElementById('countLikes').textContent = metrics.likes; document.getElementById('countComments').textContent = metrics.comments; document.getElementById('countReposts').textContent = metrics.reposts; modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-backPostBtn.addEventListener('click', closeModal); prevPostBtn.addEventListener('click', () => openPost(activeIndex - 1)); nextPostBtn.addEventListener('click', () => openPost(activeIndex + 1)); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+backPostBtn.addEventListener('click', closeModal);
+prevPostBtn.addEventListener('click', () => openAdjacentPost(-1));
+nextPostBtn.addEventListener('click', () => openAdjacentPost(1));
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+modalView?.addEventListener('touchstart', e => { const t = e.changedTouches[0]; modalTouchStartX = t.clientX; modalTouchStartY = t.clientY; }, {passive:true});
+modalView?.addEventListener('touchend', e => { const t = e.changedTouches[0]; handleVerticalPostSwipe(t.clientX, t.clientY); }, {passive:true});
+modalView?.addEventListener('wheel', e => {
+  if (!modal.classList.contains('open')) return;
+  if (wheelLock) return;
+  if (Math.abs(e.deltaY) < 90 || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+  wheelLock = true;
+  e.preventDefault();
+  openAdjacentPost(e.deltaY > 0 ? 1 : -1);
+  setTimeout(() => { wheelLock = false; }, 380);
+}, {passive:false});
 const storiesOverlay = document.getElementById('storiesOverlay'); const storyAvatarHotspot = document.getElementById('storyAvatarHotspot'); const closeStories = document.getElementById('closeStories'); const storyPrev = document.getElementById('storyPrev'); const storyNext = document.getElementById('storyNext'); const openRelatedPost = document.getElementById('openRelatedPost'); let storyIndex = 0;
 function renderProgress() { const wrap = document.getElementById('storiesProgress'); wrap.innerHTML = STORIES.map((_, i) => `<span class="story-progress-segment ${i < storyIndex ? 'done' : i === storyIndex ? 'active' : ''}"></span>`).join(''); }
 function storyWidgetHtml(story) { if (story.type === 'poll') return story.options.map((o,i) => `<button class="story-option" data-option="${i}">${esc(o)}</button>`).join(''); if (story.type === 'quiz') return story.options.map((o,i) => `<button class="story-option" data-option="${i}" data-correct="${i === story.correct ? '1':'0'}">${esc(o)}</button>`).join(''); if (story.type === 'question') return `<div class="story-question-box"><span>Стікер «Питання»</span><div>${esc(story.placeholder || 'Ваша відповідь…')}</div></div>`; if (story.type === 'share') return `<button class="story-share-button" type="button">${esc(story.button || 'Дивитися допис')}</button>`; if (story.type === 'quote') return `<div class="story-quote">${esc(story.body)}</div>`; return ''; }
@@ -92,4 +126,4 @@ function closeStoriesViewer() { storiesOverlay.classList.remove('open'); documen
 function nextStory() { if (storyIndex >= STORIES.length-1) closeStoriesViewer(); else { storyIndex++; renderStory(); } }
 function prevStory() { if (storyIndex > 0) { storyIndex--; renderStory(); } }
 storyAvatarHotspot.addEventListener('click', () => openStoriesViewer(0)); closeStories.addEventListener('click', closeStoriesViewer); storyNext.addEventListener('click', nextStory); storyPrev.addEventListener('click', prevStory); openRelatedPost.addEventListener('click', () => { const s = STORIES[storyIndex]; if (s.post) { closeStoriesViewer(); openPost(s.post-1); } });
-document.addEventListener('keydown', e => { if (storiesOverlay.classList.contains('open')) { if (e.key === 'Escape') closeStoriesViewer(); if (e.key === 'ArrowRight') nextStory(); if (e.key === 'ArrowLeft') prevStory(); return; } if (!modal.classList.contains('open')) return; if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(-1); else openPost(activeIndex - 1); } if (e.key === 'ArrowRight') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(1); else openPost(activeIndex + 1); } });
+document.addEventListener('keydown', e => { if (storiesOverlay.classList.contains('open')) { if (e.key === 'Escape') closeStoriesViewer(); if (e.key === 'ArrowRight') nextStory(); if (e.key === 'ArrowLeft') prevStory(); return; } if (!modal.classList.contains('open')) return; if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(-1); else openAdjacentPost(-1); } if (e.key === 'ArrowRight') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(1); else openAdjacentPost(1); } if (e.key === 'ArrowUp') openAdjacentPost(-1); if (e.key === 'ArrowDown') openAdjacentPost(1); });
