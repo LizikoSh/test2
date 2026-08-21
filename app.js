@@ -21,7 +21,7 @@ function metrics(n){return{likes:3+n%9,comments:n%3,reposts:(n+1)%2}}
 
 const leadingBlanks=(3-(POSTS.length%3))%3;
 for(let i=0;i<leadingBlanks;i++){const b=document.createElement('div');b.className='tile-placeholder';feed.appendChild(b)}
-[...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}"><span class="seq">${String(post.n).padStart(2,'0')}</span>`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
+[...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}">`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
 
 function postArticle(post){
  const ims=images(post);const m=metrics(post.n);const hs=tags(post);
@@ -37,7 +37,7 @@ function postArticle(post){
     <div class="continuous-dots">${ims.length>1?ims.map((_,i)=>`<button class="continuous-dot ${i===0?'active':''}" type="button" data-slide="${i}" aria-label="Слайд ${i+1}"></button>`).join(''):''}</div>
    </div>
    <div class="continuous-text-col">
-    <div class="continuous-author"><img src="assets/avatar.png" alt="4garmin"><div class="continuous-author-meta"><strong>4garmin</strong><span>${esc(post.format||'Допис')}</span></div><span class="continuous-post-num">№${String(post.n).padStart(2,'0')}</span></div>
+    <div class="continuous-author"><img src="assets/avatar.png" alt="4garmin"><div class="continuous-author-meta"><strong>4garmin</strong><span>${esc(post.format||'Допис')}</span></div></div>
     <div class="continuous-caption"><strong>4garmin</strong> <span class="caption-body">${nl(post.caption)}</span>${hs?`<div class="continuous-hashtags">${esc(hs)}</div>`:''}<div class="continuous-date">${esc(post.date)} · заплановано</div></div>
     <div class="continuous-actions"><span>♡ ${m.likes}</span><span>◌ ${m.comments}</span><span>↻ ${m.reposts}</span><span>➤</span><span class="save">⌑</span></div>
     <details class="continuous-notes"><summary>Виробничі нотатки</summary><div class="continuous-notes-inner"><h4>Структура</h4><ol>${slides.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>${stories.length?`<h4>Stories</h4><ul>${stories.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}<h4>Макет</h4><div>${esc(post.layout||'')}</div><h4>CTA</h4><div>${esc(post.cta||'')}</div></div></details>
