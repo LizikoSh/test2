@@ -114,7 +114,7 @@ modalView?.addEventListener('wheel', e => {
   if (Math.abs(e.deltaY) < 90 || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
   wheelLock = true;
   e.preventDefault();
-  openAdjacentPost(e.deltaY > 0 ? 1 : -1);
+  openAdjacentPost(e.deltaY < 0 ? 1 : -1);
   setTimeout(() => { wheelLock = false; }, 380);
 }, {passive:false});
 const storiesOverlay = document.getElementById('storiesOverlay'); const storyAvatarHotspot = document.getElementById('storyAvatarHotspot'); const closeStories = document.getElementById('closeStories'); const storyPrev = document.getElementById('storyPrev'); const storyNext = document.getElementById('storyNext'); const openRelatedPost = document.getElementById('openRelatedPost'); let storyIndex = 0;
@@ -126,4 +126,4 @@ function closeStoriesViewer() { storiesOverlay.classList.remove('open'); documen
 function nextStory() { if (storyIndex >= STORIES.length-1) closeStoriesViewer(); else { storyIndex++; renderStory(); } }
 function prevStory() { if (storyIndex > 0) { storyIndex--; renderStory(); } }
 storyAvatarHotspot.addEventListener('click', () => openStoriesViewer(0)); closeStories.addEventListener('click', closeStoriesViewer); storyNext.addEventListener('click', nextStory); storyPrev.addEventListener('click', prevStory); openRelatedPost.addEventListener('click', () => { const s = STORIES[storyIndex]; if (s.post) { closeStoriesViewer(); openPost(s.post-1); } });
-document.addEventListener('keydown', e => { if (storiesOverlay.classList.contains('open')) { if (e.key === 'Escape') closeStoriesViewer(); if (e.key === 'ArrowRight') nextStory(); if (e.key === 'ArrowLeft') prevStory(); return; } if (!modal.classList.contains('open')) return; if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(-1); else openAdjacentPost(-1); } if (e.key === 'ArrowRight') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(1); else openAdjacentPost(1); } if (e.key === 'ArrowUp') openAdjacentPost(-1); if (e.key === 'ArrowDown') openAdjacentPost(1); });
+document.addEventListener('keydown', e => { if (storiesOverlay.classList.contains('open')) { if (e.key === 'Escape') closeStoriesViewer(); if (e.key === 'ArrowRight') nextStory(); if (e.key === 'ArrowLeft') prevStory(); return; } if (!modal.classList.contains('open')) return; if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(-1); else openAdjacentPost(-1); } if (e.key === 'ArrowRight') { if (getPostImages(POSTS[activeIndex]).length > 1 && !e.shiftKey) changeSlide(1); else openAdjacentPost(1); } if (e.key === 'ArrowUp') openAdjacentPost(1); if (e.key === 'ArrowDown') openAdjacentPost(-1); });
