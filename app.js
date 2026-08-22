@@ -27,35 +27,63 @@ const SIMPLE_POSTS = Array.from({length:12}, (_,i)=>{
 
 function buildGridRows(){
   const rows=[];
+  const n=POSTS.length;
+
+  // Підбираємо кількість рядків так, щоб:
+  // 1) верхній ряд був повністю заповнений;
+  // 2) порожні комірки залишалися лише в найнижчому рядку;
+  // 3) чисті фото стояли в центрі кожного другого рядка.
+  let rowCount=1;
+  let simpleCount=0;
+  let blanks=0;
+
+  for(let r=1;r<100;r++){
+    const k=Math.min(SIMPLE_POSTS.length, Math.floor(r/2));
+    const b=3*r-(n+k);
+    if((b===1||b===2) && n+k<=3*r){
+      rowCount=r;
+      simpleCount=k;
+      blanks=b;
+      break;
+    }
+  }
+
+  // Запасний варіант для нетипової кількості публікацій.
+  if(!rowCount || rowCount===1 && n>3){
+    simpleCount=Math.min(SIMPLE_POSTS.length, Math.floor(n/5));
+    rowCount=Math.ceil((n+simpleCount)/3);
+    blanks=3*rowCount-(n+simpleCount);
+  }
+
   let postIndex=0;
   let simpleIndex=0;
+  const bottomPosts=Math.max(1, 3-blanks);
 
-  // Перший рядок: перші 3 існуючі публікації, без чистого фото.
-  if (POSTS.length) {
-    const first=POSTS.slice(0,3);
-    rows.push([...first].reverse());
-    postIndex=first.length;
-  }
+  // Найнижчий ряд: старі публікації притиснуті вправо,
+  // тому перша публікація залишається внизу праворуч.
+  const firstBatch=POSTS.slice(postIndex, postIndex+bottomPosts);
+  postIndex+=firstBatch.length;
+  const bottomRow=Array(3-firstBatch.length).fill(null).concat([...firstBatch].reverse());
+  rows.push(bottomRow);
 
-  // Далі: рядок із чистим фото в центрі -> один звичайний рядок -> повтор.
-  let useSimpleRow=true;
-  while (postIndex < POSTS.length) {
-    if (useSimpleRow && simpleIndex < SIMPLE_POSTS.length) {
-      const firstPost=POSTS[postIndex++] || null;
-      const secondPost=POSTS[postIndex++] || null;
+  // Далі: кожен другий ряд має чисте фото строго в центрі.
+  for(let rowNo=2; rowNo<=rowCount; rowNo++){
+    const isSimpleRow=rowNo%2===0 && simpleIndex<simpleCount;
+
+    if(isSimpleRow){
+      const older=POSTS[postIndex++]||null;
+      const newer=POSTS[postIndex++]||null;
       const simple=SIMPLE_POSTS[simpleIndex++];
-      // Візуально: новіший існуючий пост ліворуч, чисте фото по центру,
-      // старіший існуючий пост праворуч.
-      rows.push([secondPost || firstPost, simple, secondPost ? firstPost : null]);
-    } else {
+      rows.push([newer, simple, older]);
+    }else{
       const batch=POSTS.slice(postIndex, postIndex+3);
-      postIndex += batch.length;
+      postIndex+=batch.length;
       const visual=[...batch].reverse();
-      while (visual.length < 3) visual.push(null);
+      while(visual.length<3) visual.unshift(null);
       rows.push(visual);
     }
-    useSimpleRow=!useSimpleRow;
   }
+
   return rows;
 }
 
