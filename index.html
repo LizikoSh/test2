@@ -5,9 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light only">
   <title>4Garmin — інтерактивний контент-план Instagram</title>
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 </head>
-<body>
+<body class="auth-locked">
+  <section id="authScreen" class="auth-screen" aria-label="Вхід до сторінки">
+    <div class="auth-card">
+      <img class="auth-logo" src="assets/avatar.png" alt="4Garmin">
+      <div class="auth-kicker">4GARMIN · CONTENT PLAN</div>
+      <h1>Вхід до сторінки</h1>
+      <p class="auth-lead">Введіть логін і пароль для перегляду контент-плану.</p>
+
+      <form id="authForm" class="auth-form" autocomplete="off">
+        <label for="authLogin">Логін</label>
+        <input id="authLogin" name="login" type="text" inputmode="text" autocomplete="username" required>
+
+        <label for="authPassword">Пароль</label>
+        <div class="auth-password-wrap">
+          <input id="authPassword" name="password" type="password" autocomplete="current-password" required>
+          <button id="togglePassword" type="button" class="auth-toggle" aria-label="Показати пароль">Показати</button>
+        </div>
+
+        <p id="authError" class="auth-error" role="alert" aria-live="polite"></p>
+        <button class="auth-submit" type="submit">Увійти</button>
+      </form>
+    </div>
+  </section>
   <main class="app">
     <div class="profile-head-wrap">
       <img class="profile-header" src="assets/profile-header.jpg" alt="Верх профілю Instagram 4garmin">
@@ -44,7 +66,8 @@
       <div class="stories-bottom"><div id="storyIndex" class="story-index"></div><button id="openRelatedPost" class="story-related" type="button">Відкрити пов’язаний допис</button></div>
     </div>
   </div>
-  <script src="content.js?v=10"></script>
-  <script src="app.js?v=10"></script>
+  <script src="auth.js?v=11"></script>
+  <script src="content.js?v=11"></script>
+  <script src="app.js?v=11"></script>
 </body>
 </html>
