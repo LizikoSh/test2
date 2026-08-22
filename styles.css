@@ -155,3 +155,24 @@ body.auth-unlocked>.auth-screen{display:none!important}
 .auth-shake{animation:authShake .22s ease-in-out}
 @media(max-width:520px){.auth-screen{padding:16px}.auth-card{padding:28px 22px 24px;border-radius:18px}.auth-card h1{font-size:25px}.auth-logo{width:56px;height:56px;margin-bottom:18px}}
 @media(prefers-reduced-motion:reduce){.auth-shake{animation:none}.auth-form input{transition:none}}
+
+
+/* ===== Desktop layout fix · controls below caption ===== */
+@media(min-width:761px){
+  .continuous-text-col{display:flex;flex-direction:column}
+  .continuous-author-desktop{order:0}
+  .continuous-caption{order:1;flex:1;min-height:0}
+  .continuous-admin-row{order:2;border-top:1px solid #eceef1;border-bottom:0}
+  .continuous-actions{order:3;border-top:1px solid #eceef1}
+  .continuous-notes{order:4}
+}
+
+/* Keep original Instagram-like mobile order despite desktop markup change */
+@media(max-width:760px){
+  .continuous-text-col{display:flex;flex-direction:column}
+  .continuous-admin-row{order:1}
+  .continuous-dots-mobile{order:2}
+  .continuous-actions{order:3}
+  .continuous-caption{order:4}
+  .continuous-notes{order:5}
+}

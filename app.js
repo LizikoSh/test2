@@ -38,7 +38,6 @@ function uiIcon(name){
  return icons[name]||'';
 }
 
-feed.innerHTML='';
 [...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}">`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
 
 function postArticle(post){
@@ -59,6 +58,7 @@ function postArticle(post){
    </div>
    <div class="continuous-text-col">
     <div class="continuous-author continuous-author-desktop">${author}</div>
+    <div class="continuous-caption"><strong>4garmin</strong> <span class="caption-body">${nl(post.caption)}</span>${hs?`<div class="continuous-hashtags">${esc(hs)}</div>`:''}<div class="continuous-date">${esc(post.date)}</div></div>
     <div class="continuous-admin-row"><button class="continuous-stat-btn" type="button">Переглянути статистику</button><button class="continuous-promote-btn" type="button">Просувати допис</button></div>
     <div class="continuous-dots continuous-dots-mobile">${dots}</div>
     <div class="continuous-actions">
@@ -68,7 +68,6 @@ function postArticle(post){
       <span class="continuous-action">${uiIcon('send')}</span>
       <span class="continuous-action save">${uiIcon('bookmark')}</span>
     </div>
-    <div class="continuous-caption"><strong>4garmin</strong> <span class="caption-body">${nl(post.caption)}</span>${hs?`<div class="continuous-hashtags">${esc(hs)}</div>`:''}<div class="continuous-date">${esc(post.date)}</div></div>
     <details class="continuous-notes"><summary>Виробничі нотатки</summary><div class="continuous-notes-inner"><h4>Структура</h4><ol>${slides.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>${stories.length?`<h4>Stories</h4><ul>${stories.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}<h4>Макет</h4><div>${esc(post.layout||'')}</div><h4>CTA</h4><div>${esc(post.cta||'')}</div></div></details>
    </div>
   </div>
