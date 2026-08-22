@@ -25,17 +25,49 @@ const SIMPLE_POSTS = Array.from({length:12}, (_,i)=>{
   };
 });
 
-function buildTimeline(){
-  const items=[];
-  POSTS.slice(0,3).forEach(p=>items.push(p));
+function buildGridRows(){
+  const rows=[];
+  let postIndex=0;
   let simpleIndex=0;
-  for(let n=4;n<=POSTS.length;n+=2){
-    const evenPost=POSTS[n-1];
-    const oddPost=POSTS[n];
-    if(evenPost) items.push(evenPost);
-    if(simpleIndex<SIMPLE_POSTS.length) items.push(SIMPLE_POSTS[simpleIndex++]);
-    if(oddPost) items.push(oddPost);
+
+  // Перший рядок: перші 3 існуючі публікації, без чистого фото.
+  if (POSTS.length) {
+    const first=POSTS.slice(0,3);
+    rows.push([...first].reverse());
+    postIndex=first.length;
   }
+
+  // Далі: рядок із чистим фото в центрі -> один звичайний рядок -> повтор.
+  let useSimpleRow=true;
+  while (postIndex < POSTS.length) {
+    if (useSimpleRow && simpleIndex < SIMPLE_POSTS.length) {
+      const firstPost=POSTS[postIndex++] || null;
+      const secondPost=POSTS[postIndex++] || null;
+      const simple=SIMPLE_POSTS[simpleIndex++];
+      // Візуально: новіший існуючий пост ліворуч, чисте фото по центру,
+      // старіший існуючий пост праворуч.
+      rows.push([secondPost || firstPost, simple, secondPost ? firstPost : null]);
+    } else {
+      const batch=POSTS.slice(postIndex, postIndex+3);
+      postIndex += batch.length;
+      const visual=[...batch].reverse();
+      while (visual.length < 3) visual.push(null);
+      rows.push(visual);
+    }
+    useSimpleRow=!useSimpleRow;
+  }
+  return rows;
+}
+
+const GRID_ROWS=buildGridRows();
+
+function buildTimeline(){
+  // Читаємо кожен рядок у хронологічному напрямку справа наліво.
+  // Так порядок існуючих дописів 1,2,3... не змінюється.
+  const items=[];
+  GRID_ROWS.forEach(row=>{
+    [...row].reverse().forEach(item=>{if(item) items.push(item)});
+  });
   return items;
 }
 const TIMELINE=buildTimeline();
@@ -85,17 +117,18 @@ function makeTile(item){
 
 function renderGrid(){
   feed.innerHTML='';
-  const rows=[];
-  if(POSTS.length>=3) rows.push([POSTS[2],POSTS[1],POSTS[0]]);
-  let simpleIndex=0;
-  for(let even=4;even<=POSTS.length;even+=2){
-    const right=POSTS[even-1];
-    const left=POSTS[even];
-    const simple=SIMPLE_POSTS[simpleIndex++];
-    if(left) rows.push([left,simple,right]);
-    else rows.push([right,simple,null]);
-  }
-  rows.reverse().forEach(row=>row.forEach(item=>{if(item)feed.appendChild(makeTile(item))}));
+  [...GRID_ROWS].reverse().forEach(row=>{
+    row.forEach(item=>{
+      if(item){
+        feed.appendChild(makeTile(item));
+      }else{
+        const spacer=document.createElement('div');
+        spacer.className='tile-placeholder';
+        spacer.setAttribute('aria-hidden','true');
+        feed.appendChild(spacer);
+      }
+    });
+  });
 }
 renderGrid();
 
