@@ -38,6 +38,7 @@ function uiIcon(name){
  return icons[name]||'';
 }
 
+feed.innerHTML='';
 [...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}">`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
 
 function postArticle(post){

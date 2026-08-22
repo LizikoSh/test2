@@ -126,3 +126,7 @@
   .continuous-date{margin-top:12px;font-size:14px;color:#777b82}
   .continuous-notes{display:none}
 }
+
+/* Grid alignment: no leading empty cell */
+.feed{grid-auto-flow:row;}
+.feed>.tile:first-child{grid-column:1;grid-row:auto;}
