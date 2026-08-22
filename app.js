@@ -59,11 +59,11 @@ function buildGridRows(){
   let simpleIndex=0;
   const bottomPosts=Math.max(1, 3-blanks);
 
-  // Найнижчий ряд: старі публікації притиснуті вправо,
-  // тому перша публікація залишається внизу праворуч.
+  // Найнижчий ряд: старі публікації притиснуті вліво,
+  // тому перша публікація залишається внизу ліворуч.
   const firstBatch=POSTS.slice(postIndex, postIndex+bottomPosts);
   postIndex+=firstBatch.length;
-  const bottomRow=Array(3-firstBatch.length).fill(null).concat([...firstBatch].reverse());
+  const bottomRow=[...firstBatch].reverse().concat(Array(3-firstBatch.length).fill(null));
   rows.push(bottomRow);
 
   // Далі: кожен другий ряд має чисте фото строго в центрі.
