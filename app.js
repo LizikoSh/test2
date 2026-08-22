@@ -38,8 +38,6 @@ function uiIcon(name){
  return icons[name]||'';
 }
 
-const leadingBlanks=(3-(POSTS.length%3))%3;
-for(let i=0;i<leadingBlanks;i++){const b=document.createElement('div');b.className='tile-placeholder';feed.appendChild(b)}
 [...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}">`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
 
 function postArticle(post){
