@@ -6,6 +6,40 @@ if (!window.GARMIN_CONTENT || !Array.isArray(window.GARMIN_CONTENT.posts)) {
 const POSTS = window.GARMIN_CONTENT?.posts || [];
 const STORIES = window.GARMIN_CONTENT?.stories || [];
 
+const SIMPLE_POSTS = Array.from({length:12}, (_,i)=>{
+  const num=String(i+1).padStart(2,'0');
+  return {
+    simple:true,
+    key:`simple-${num}`,
+    title:'Garmin',
+    date:'',
+    format:'Фото',
+    count:1,
+    caption:'',
+    cta:'',
+    slides:[],
+    stories:[],
+    layout:'Фото приладу Garmin без текстового оверлею.',
+    images:[`assets/img-simple-${num}.jpg`],
+    hashtags:''
+  };
+});
+
+function buildTimeline(){
+  const items=[];
+  POSTS.slice(0,3).forEach(p=>items.push(p));
+  let simpleIndex=0;
+  for(let n=4;n<=POSTS.length;n+=2){
+    const evenPost=POSTS[n-1];
+    const oddPost=POSTS[n];
+    if(evenPost) items.push(evenPost);
+    if(simpleIndex<SIMPLE_POSTS.length) items.push(SIMPLE_POSTS[simpleIndex++]);
+    if(oddPost) items.push(oddPost);
+  }
+  return items;
+}
+const TIMELINE=buildTimeline();
+
 const feed=document.getElementById('feed');
 const continuousOverlay=document.getElementById('continuousOverlay');
 const continuousFeed=document.getElementById('continuousFeed');
@@ -21,9 +55,11 @@ let storyIndex=0;
 
 function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
 function nl(v){return esc(v).replace(/\n/g,'<br>')}
+function itemId(post){return post.simple?post.key:String(post.n)}
 function images(post){return Array.isArray(post.images)&&post.images.length?post.images:[`assets/post-${String(post.n).padStart(2,'0')}.jpg`]}
+function coverImage(post){return post.simple?post.images[0]:`assets/post-${String(post.n).padStart(2,'0')}.jpg`}
 function tags(post){if(Object.prototype.hasOwnProperty.call(post,'hashtags'))return post.hashtags||'';const t=(post.title||'').toLowerCase();const a=['#4garmin_смартгодинники','#garminukraine'];if(t.includes('edge'))a.push('#garmin_edge');else if(t.includes('tacx'))a.push('#garmin_tacx');else if(t.includes('tactix'))a.push('#garmin_tactix');else if(t.includes('fēnix')||t.includes('fenix'))a.push('#garmin_fenix');else a.push('#garmin');return a.join(' ')}
-function metrics(n){return{likes:3+n%9,comments:n%3,reposts:(n+1)%2}}
+function metrics(post){const seed=post.simple?30+Number(post.key.slice(-2)):Number(post.n||1);return{likes:3+seed%9,comments:seed%3,reposts:(seed+1)%2}}
 
 function uiIcon(name){
  const common='viewBox="0 0 24 24" aria-hidden="true" focusable="false"';
@@ -38,19 +74,45 @@ function uiIcon(name){
  return icons[name]||'';
 }
 
-[...POSTS].reverse().forEach(post=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML=`<img src="assets/post-${String(post.n).padStart(2,'0')}.jpg" alt="${esc(post.title)}">`;b.addEventListener('click',()=>openContinuous(post.n));feed.appendChild(b)});
+function makeTile(item){
+  const b=document.createElement('button');
+  b.type='button';
+  b.className=`tile${item.simple?' tile-simple':''}`;
+  b.innerHTML=`<img src="${coverImage(item)}" alt="${item.simple?'Фото приладу Garmin':esc(item.title)}">`;
+  b.addEventListener('click',()=>openContinuous(itemId(item)));
+  return b;
+}
+
+function renderGrid(){
+  feed.innerHTML='';
+  const rows=[];
+  if(POSTS.length>=3) rows.push([POSTS[2],POSTS[1],POSTS[0]]);
+  let simpleIndex=0;
+  for(let even=4;even<=POSTS.length;even+=2){
+    const right=POSTS[even-1];
+    const left=POSTS[even];
+    const simple=SIMPLE_POSTS[simpleIndex++];
+    if(left) rows.push([left,simple,right]);
+    else rows.push([right,simple,null]);
+  }
+  rows.reverse().forEach(row=>row.forEach(item=>{if(item)feed.appendChild(makeTile(item))}));
+}
+renderGrid();
 
 function postArticle(post){
- const ims=images(post);const m=metrics(post.n);const hs=tags(post);
+ const ims=images(post);const m=metrics(post);const hs=tags(post);const id=itemId(post);
  const slides=post.slides||[];const stories=post.stories||[];
  const dots=ims.length>1?ims.map((_,i)=>`<button class="continuous-dot ${i===0?'active':''}" type="button" data-slide="${i}" aria-label="Слайд ${i+1}"></button>`).join(''):'';
  const author=`<div class="continuous-author-main"><img src="assets/avatar.png" alt="4garmin"><strong>4garmin</strong></div><button class="continuous-menu" type="button" aria-label="Меню допису">${uiIcon('menu')}</button>`;
- return `<article class="continuous-post" id="continuous-post-${post.n}" data-post="${post.n}" data-slide="0">
+ const captionVisible=Boolean(post.caption||hs||post.date);
+ const caption=captionVisible?`<div class="continuous-caption"><strong>4garmin</strong>${post.caption?` <span class="caption-body">${nl(post.caption)}</span>`:''}${hs?`<div class="continuous-hashtags">${esc(hs)}</div>`:''}${post.date?`<div class="continuous-date">${esc(post.date)}</div>`:''}</div>`:(post.simple?`<div class="continuous-caption continuous-caption-empty"></div>`:'');
+ const notes=!post.simple?`<details class="continuous-notes"><summary>Виробничі нотатки</summary><div class="continuous-notes-inner"><h4>Структура</h4><ol>${slides.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>${stories.length?`<h4>Stories</h4><ul>${stories.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}<h4>Макет</h4><div>${esc(post.layout||'')}</div><h4>CTA</h4><div>${esc(post.cta||'')}</div></div></details>`:'';
+ return `<article class="continuous-post${post.simple?' continuous-post-simple':''}" id="continuous-post-${id}" data-post="${id}" data-slide="0">
   <div class="continuous-author continuous-author-mobile">${author}</div>
   <div class="continuous-post-grid">
    <div class="continuous-media-col">
     <div class="continuous-media-wrap">
-     <img class="continuous-media" src="${ims[0]}" alt="${esc(post.title)} — слайд 1">
+     <img class="continuous-media" src="${ims[0]}" alt="${post.simple?'Фото приладу Garmin':esc(post.title)}">
      <button class="continuous-slide-prev" type="button" aria-label="Попередній слайд" ${ims.length<2?'hidden':''}>‹</button>
      <button class="continuous-slide-next" type="button" aria-label="Наступний слайд" ${ims.length<2?'hidden':''}>›</button>
     </div>
@@ -58,7 +120,7 @@ function postArticle(post){
    </div>
    <div class="continuous-text-col">
     <div class="continuous-author continuous-author-desktop">${author}</div>
-    <div class="continuous-caption"><strong>4garmin</strong> <span class="caption-body">${nl(post.caption)}</span>${hs?`<div class="continuous-hashtags">${esc(hs)}</div>`:''}<div class="continuous-date">${esc(post.date)}</div></div>
+    ${caption}
     <div class="continuous-admin-row"><button class="continuous-stat-btn" type="button">Переглянути статистику</button><button class="continuous-promote-btn" type="button">Просувати допис</button></div>
     <div class="continuous-dots continuous-dots-mobile">${dots}</div>
     <div class="continuous-actions">
@@ -68,27 +130,31 @@ function postArticle(post){
       <span class="continuous-action">${uiIcon('send')}</span>
       <span class="continuous-action save">${uiIcon('bookmark')}</span>
     </div>
-    <details class="continuous-notes"><summary>Виробничі нотатки</summary><div class="continuous-notes-inner"><h4>Структура</h4><ol>${slides.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>${stories.length?`<h4>Stories</h4><ul>${stories.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}<h4>Макет</h4><div>${esc(post.layout||'')}</div><h4>CTA</h4><div>${esc(post.cta||'')}</div></div></details>
+    ${notes}
    </div>
   </div>
  </article>`
 }
 
-function renderContinuous(){continuousFeed.innerHTML=[...POSTS].reverse().map(postArticle).join('');
- continuousFeed.querySelectorAll('.continuous-post').forEach(article=>{
-  const n=Number(article.dataset.post);const post=POSTS[n-1];const ims=images(post);let idx=0;
-  const img=article.querySelector('.continuous-media');const dots=[...article.querySelectorAll('.continuous-dot')];
-  function show(i){idx=(i+ims.length)%ims.length;article.dataset.slide=idx;img.src=ims[idx];img.alt=`${post.title} — слайд ${idx+1}`;dots.forEach((d,j)=>d.classList.toggle('active',j===idx))}
-  article.querySelector('.continuous-slide-prev')?.addEventListener('click',()=>show(idx-1));
-  article.querySelector('.continuous-slide-next')?.addEventListener('click',()=>show(idx+1));
-  dots.forEach(d=>d.addEventListener('click',()=>show(Number(d.dataset.slide))));
-  const wrap=article.querySelector('.continuous-media-wrap');let sx=null,sy=null;
-  wrap.addEventListener('touchstart',e=>{sx=e.changedTouches[0].clientX;sy=e.changedTouches[0].clientY},{passive:true});
-  wrap.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=sy=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2&&ims.length>1)show(idx+(dx<0?1:-1))},{passive:true});
- })}
+function renderContinuous(){
+  continuousFeed.innerHTML=[...TIMELINE].reverse().map(postArticle).join('');
+  const byId=new Map(TIMELINE.map(item=>[itemId(item),item]));
+  continuousFeed.querySelectorAll('.continuous-post').forEach(article=>{
+    const id=article.dataset.post;const post=byId.get(id);if(!post)return;
+    const ims=images(post);let idx=0;
+    const img=article.querySelector('.continuous-media');const dots=[...article.querySelectorAll('.continuous-dot')];
+    function show(i){idx=(i+ims.length)%ims.length;article.dataset.slide=idx;img.src=ims[idx];img.alt=post.simple?'Фото приладу Garmin':`${post.title} — слайд ${idx+1}`;dots.forEach((d,j)=>d.classList.toggle('active',j===idx))}
+    article.querySelector('.continuous-slide-prev')?.addEventListener('click',()=>show(idx-1));
+    article.querySelector('.continuous-slide-next')?.addEventListener('click',()=>show(idx+1));
+    dots.forEach(d=>d.addEventListener('click',()=>show(Number(d.dataset.slide))));
+    const wrap=article.querySelector('.continuous-media-wrap');let sx=null,sy=null;
+    wrap.addEventListener('touchstart',e=>{sx=e.changedTouches[0].clientX;sy=e.changedTouches[0].clientY},{passive:true});
+    wrap.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=sy=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2&&ims.length>1)show(idx+(dx<0?1:-1))},{passive:true});
+  });
+}
 renderContinuous();
 
-function openContinuous(postN=1){continuousOverlay.classList.add('open');document.body.style.overflow='hidden';requestAnimationFrame(()=>{document.getElementById(`continuous-post-${postN}`)?.scrollIntoView({block:'start'})})}
+function openContinuous(postKey=1){const id=String(postKey);continuousOverlay.classList.add('open');document.body.style.overflow='hidden';requestAnimationFrame(()=>{document.getElementById(`continuous-post-${id}`)?.scrollIntoView({block:'start'})})}
 function closeContinuousViewer(){continuousOverlay.classList.remove('open');document.body.style.overflow=''}
 closeContinuous.addEventListener('click',closeContinuousViewer);jumpFirst.addEventListener('click',()=>document.getElementById('continuous-post-1')?.scrollIntoView({behavior:'smooth',block:'start'}));
 
