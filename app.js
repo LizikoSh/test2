@@ -1,3 +1,8 @@
+if (!window.GARMIN_CONTENT || !Array.isArray(window.GARMIN_CONTENT.posts)) {
+  document.body.innerHTML = `<div style="max-width:680px;margin:40px auto;padding:24px;font-family:Arial,sans-serif;line-height:1.5"><h2>Не завантажився content.js</h2><p>Перевірте, що <b>content.js</b> лежить у корені поруч з index.html та app.js.</p></div>`;
+  throw new Error('GARMIN_CONTENT is missing');
+}
+
 const POSTS = window.GARMIN_CONTENT?.posts || [];
 const STORIES = window.GARMIN_CONTENT?.stories || [];
 
